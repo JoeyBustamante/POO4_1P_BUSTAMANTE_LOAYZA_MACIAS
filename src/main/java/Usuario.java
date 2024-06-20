@@ -4,7 +4,13 @@ public class Usuario {
     private String apellido;
     private String correo;
 
-    
+    //Constructor
+    public Usuario(String nombre, String apellido, String correo){
+        this.nombre= nombre;
+        this.apellido= apellido;
+        this.correo= correo;
+    }
+
     //Getters
     public String getNombre() {
         return nombre;
