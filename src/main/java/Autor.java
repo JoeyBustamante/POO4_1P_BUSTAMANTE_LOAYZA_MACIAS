@@ -8,10 +8,30 @@
  * @author ALIENWARE
  */
 import java.util.ArrayList;
-public class Autor {
+public class Autor extends Usuario {
     private int id;
-    private String Institucion;
-    String campoDeInvestgacion;
-    ArrayList<Articulo> articulo=new ArrayList<Articulo>();
+    private String institucion;
+    private String campoDeInvestgacion;
+    private ArrayList<Articulo> articulo=new ArrayList<Articulo>();
     
+    //Constructor
+    public Autor(String nombre, String apellido, String correo, String especialidad, int id, String institucion, String campoDeInvestigacion, ArrayList<Articulo> articulo){
+        super(nombre,apellido,correo);
+        this.id=id;
+        this.institucion=institucion;
+        this.campoDeInvestgacion=campoDeInvestigacion;
+        this.articulo=articulo;
+    }
+    
+    //Getters
+    public int getId(){return this.id;}
+    public String getInstitucion(){return this.institucion;}
+    public String getCampoDeInvestigacion(){return this.campoDeInvestgacion;}
+    public ArrayList<Articulo> getArticulo(){return this.articulo;}
+
+    //Setters
+    public void setId(int id){this.id=id;}
+    public void setInstitucion(String institucion){this.institucion=institucion;}
+    public void setCampoDeInvestigacion(String campoDeInvestgacion){this.campoDeInvestgacion=campoDeInvestgacion;}
+    public void setArticulo(ArrayList<Articulo> articulo){this.articulo=articulo;}
 }
