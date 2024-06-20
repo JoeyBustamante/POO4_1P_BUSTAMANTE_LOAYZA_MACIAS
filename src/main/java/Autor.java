@@ -7,8 +7,11 @@
  *
  * @author ALIENWARE
  */
+import java.util.ArrayList;
 public class Autor {
     private int id;
     private String Institucion;
+    String campoDeInvestgacion;
+    ArrayList<Articulo> articulo=new ArrayList<Articulo>();
     
 }
