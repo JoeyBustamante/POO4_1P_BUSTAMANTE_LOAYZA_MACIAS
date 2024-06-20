@@ -8,5 +8,7 @@
  * @author ALIENWARE
  */
 public class Autor {
+    int id;
+    String Institucion;
     
 }
