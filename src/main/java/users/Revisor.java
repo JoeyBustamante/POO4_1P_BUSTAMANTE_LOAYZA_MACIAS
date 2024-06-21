@@ -1,11 +1,12 @@
+package users;
 public class Revisor extends Usuario{
-    private String especialidad;
-    private int articuloRevisado;
-    private String userName;
-    private String contrasena;
+    protected String especialidad;
+    protected int articuloRevisado;
+    protected String userName;
+    protected String contrasena;
 
-    public Revisor(String nombre, String apellido, String correo, String especialidad, int ArticuloRevisado, String userName, String contrasena){
-        super(nombre,apellido,correo);
+    public Revisor(String nombre, String apellido, String correo,Rol rol, String especialidad, int ArticuloRevisado, String userName, String contrasena){
+        super(nombre,apellido,correo,rol);
         this.especialidad=especialidad;
         this.articuloRevisado=articuloRevisado;
         this.userName=userName;

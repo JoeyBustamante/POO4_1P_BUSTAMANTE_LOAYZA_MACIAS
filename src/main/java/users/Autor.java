@@ -1,3 +1,4 @@
+package users;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,14 +10,14 @@
  */
 import java.util.ArrayList;
 public class Autor extends Usuario {
-    private int id;
-    private String institucion;
-    private String campoDeInvestgacion;
-    private ArrayList<Articulo> articulo=new ArrayList<Articulo>();
+    protected int id;
+    protected String institucion;
+    protected String campoDeInvestgacion;
+    protected ArrayList<Articulo> articulo=new ArrayList<Articulo>();
     
     //Constructor
-    public Autor(String nombre, String apellido, String correo, String especialidad, int id, String institucion, String campoDeInvestigacion, ArrayList<Articulo> articulo){
-        super(nombre,apellido,correo);
+    public Autor(String nombre, String apellido, String correo, Rol rol, String especialidad, int id, String institucion, String campoDeInvestigacion, ArrayList<Articulo> articulo){
+        super(nombre,apellido,correo,rol);
         this.id=id;
         this.institucion=institucion;
         this.campoDeInvestgacion=campoDeInvestigacion;

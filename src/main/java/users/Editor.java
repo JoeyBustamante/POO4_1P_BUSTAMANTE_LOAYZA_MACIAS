@@ -1,12 +1,13 @@
+package users;
 public class Editor extends Usuario {
-    private String especialidad;
-    private String nombreJournal;
-    private String userName;
-    private String contrasenia;
+    protected String especialidad;
+    protected String nombreJournal;
+    protected String userName;
+    protected String contrasenia;
 
     //Constructor
-    public Editor(String nombre, String apellido, String correo, String especialidad, String nombreJournal, String userName, String contrasenia){
-        super(nombre, apellido, correo);
+    public Editor(String nombre, String apellido, String correo, Rol rol, String especialidad, String nombreJournal, String userName, String contrasenia){
+        super(nombre, apellido, correo,rol);
         this.especialidad=especialidad;
         this.nombreJournal=nombreJournal;
         this.userName=userName;
