@@ -1,4 +1,4 @@
-package mail;
+/*package mail;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
@@ -67,3 +67,4 @@ public class Mail {
         }
     }
 }
+*/
