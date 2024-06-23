@@ -11,3 +11,18 @@
         <maven.compiler.target>22</maven.compiler.target>
     </properties>
 </project>
+
+<!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+    </dependencies>
