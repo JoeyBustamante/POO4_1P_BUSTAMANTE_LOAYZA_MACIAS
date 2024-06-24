@@ -40,5 +40,10 @@ public class Usuario {
         this.correo = correo;
     }
     
+    //Metodo toString
+    @Override
+    public String toString(){
+        return this.nombre+" "+this.apellido+" "+this.correo+" "+this.rol;
+    }    
     
 }
