@@ -1,13 +1,13 @@
-/*package mail;
+package mail;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.util.Properties;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
 
-import io.github.cdismacio.dotenv.Dotenv;
 import jdk.javadoc.doclet.DocletEnvironment;
 
 
@@ -28,7 +28,7 @@ public class Mail {
     public static String getCorreo(){return correo;}
 
     private static void cargarDatos(){
-        Dotenv dotenv = Dotenv.configure().directory("/tmp").filename("credenciales.properties").load();
+        Dotenv dotenv = Dotenv.configure().directory("./").filename("Credenciales.env").load();
         correo = dotenv.get("CORREO");
         clave = dotenv.get("CLAVE");
         host = dotenv.get("HOST");
@@ -46,12 +46,12 @@ public class Mail {
     }
 
     private static void crearSesion() {
-        session = Session.getInstance(properties, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(correo, clave);
+        session = Session.getInstance(properties, new Authenticator(){
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(correo,clave);
             }
-        });
-    }
+            });
+        }
 
     public static String sendMail(String destinatario, String asunto, String mensaje) {
         try {
@@ -67,4 +67,3 @@ public class Mail {
         }
     }
 }
-*/
