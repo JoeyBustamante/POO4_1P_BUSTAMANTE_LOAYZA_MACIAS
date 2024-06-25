@@ -28,4 +28,5 @@ public class Sistema {
         }
 
     }
+    public static boolean leerArchivoUsuarios(){}
 }
