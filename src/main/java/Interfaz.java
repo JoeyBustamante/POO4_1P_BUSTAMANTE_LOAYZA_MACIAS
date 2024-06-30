@@ -14,7 +14,10 @@ public class Interfaz {
         String tipo = sc.nextLine().toUpperCase();
         switch (tipo) {
             case "1":
-                System.out.println("Autor: ");
+                System.out.println("Autor:");
+                Scanner autor=sc.nextLine();
+                System.out.println("Datos:");
+                Scanner datos=sc.nextLine();
 
                 break;
             case "2":
