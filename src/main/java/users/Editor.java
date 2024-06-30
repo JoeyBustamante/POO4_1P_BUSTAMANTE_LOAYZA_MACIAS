@@ -11,12 +11,12 @@ public class Editor extends Usuario {
     protected String contrasena;
 
     //Constructor
-    public Editor(String nombre, String apellido, String correo, Rol rol, String especialidad, String nombreJournal, String userName, String contrasenia){
+    public Editor(String nombre, String apellido, String correo, Rol rol, String especialidad, String nombreJournal, String userName, String contrasena){
         super(nombre, apellido, correo,rol);
         this.especialidad=especialidad;
         this.nombreJournal=nombreJournal;
         this.userName=userName;
-        this.contrasena=contrasenia;
+        this.contrasena=contrasena;
     }
 
     //Getters
