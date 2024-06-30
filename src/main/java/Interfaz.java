@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Random;
 import users.Editor;
 import users.Revisor;
 import users.Rol;
@@ -14,7 +14,8 @@ public class Interfaz {
         String tipo = sc.nextLine().toUpperCase();
         switch (tipo) {
             case "1":
-                
+                System.out.println("Autor: ");
+
                 break;
             case "2":
                 boolean ingreso=false;
