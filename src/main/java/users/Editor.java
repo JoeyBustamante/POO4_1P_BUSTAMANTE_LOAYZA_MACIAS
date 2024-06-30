@@ -32,7 +32,7 @@ public class Editor extends Usuario {
     public void setContrasena(String contrasenia){this.contrasena=contrasenia;}
 
     //InicioSesion
-    public static String InicioSesion(String usuario, String contrasena){
+    public static boolean InicioSesion(String usuario, String contrasena){
         boolean seEncuentra=false;
         try {
             BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"));
@@ -44,7 +44,7 @@ public class Editor extends Usuario {
                 if( lista[3].equals("E")){
                     if (usuario.equals(lista[4]) && contrasena.equals(lista[5])){
                         seEncuentra= true;
-                        return "E";
+                        return seEncuentra;
                         
                     }
 
@@ -55,7 +55,7 @@ public class Editor extends Usuario {
         } catch (IOException e) {
             System.out.println("Error de archivo");
         }
-        return null;
+        return seEncuentra;
     }    
 
     
