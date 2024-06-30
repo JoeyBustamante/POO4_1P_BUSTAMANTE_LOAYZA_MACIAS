@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 import users.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,17 +20,7 @@ public class Sistema {
         try{
             BufferedWriter escrito=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Usuarios.txt",false));
             for (Usuario usuario : listaUsuario) {
-                if(usuario instanceof Editor){
-                    Editor ed=(Editor) usuario;
-                    escrito.write(usuario+" "+ed.getUserName()+" "+ed.getContrasena()+"\n");
-                }
-                else if(usuario instanceof Revisor){
-                    Revisor re=(Revisor) usuario;
-                    escrito.write(usuario+" "+re.getUserName()+" "+re.getContrasena()+"\n");
-                }
-                else{
-                    escrito.write(usuario+"\n");
-                }
+                escrito.write(usuario+"\n");
             }
             escrito.close();
         }catch(IOException e){
@@ -39,5 +28,34 @@ public class Sistema {
         }
 
     }
-   
+    //public static boolean leerArchivoUsuarios(){}
+
+
+    public ArrayList<Usuario> cargarUsuarios(){
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+       
+       try (BufferedReader br = new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"))) {
+           String linea;
+
+           while ((linea = br.readLine()) != null) {
+               String datos[] = linea.split(" ");
+               String nombre=datos[0];
+               String apellido= datos[1];
+               String correo = datos[2];
+               String rolr = datos[3];
+
+               Rol rol = Rol.valueOf(rolr);
+
+               Usuario usuario= new Usuario(nombre, apellido, correo, rol);
+               usuarios.add(usuario);
+
+
+           }
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+
+       return usuarios;
+   }
 }

@@ -12,13 +12,8 @@ public class Main {
         System.out.println(Sistema.listaUsuario.toString());
         Sistema.registrarDatoUsuario();
 
-        System.out.println("Ingrese su Usuario:");
-        Scanner sc=new Scanner(System.in);
-        String usuario=sc.nextLine();
-        System.out.println("Ingrese su Contrasena:");
-        String contra=sc.nextLine();
-        boolean valor=Editor.InicioSesion(usuario, contra);
-        System.out.println(valor);
+        Interfaz inter = new Interfaz();
+        inter.inicio();
         
         /*
 

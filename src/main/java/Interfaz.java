@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import users.Editor;
+import users.Revisor;
 import users.Rol;
 import users.Usuario;
 
@@ -8,30 +10,20 @@ public class Interfaz {
     
     public void inicio(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese A si es Autor, R si es Revisor o E si es editor");
-        String tipo = sc.nextLine();
-        System.out.println("Ingrese su nombre: ");
-        String nombre=sc.nextLine();
-        System.out.println("Ingrese su apellido: ");
-        String apellido=sc.nextLine();
-        System.out.println("Ingrese su correo: ");
-        String correo=sc.nextLine();
-        switch (Rol.valueOf(tipo)) {
-            case A:
-                System.out.println();
-                
-                break;
-            
-            case R:
-            
-                break;
+        System.out.println(" 1: Someter Articulo \n "+"2: Iniciar Secion");
+        String tipo = sc.nextLine().toUpperCase();
+        if(tipo.equals("2")){
 
-            case E:
+            System.out.println("Ingrese su usuario ");
+            String usuario= sc.nextLine();
+            System.out.println("Ingrese la contrasena: ");
+            String contrasena  = sc.nextLine();
+            boolean editorb = Editor.InicioSesion(usuario, contrasena);
+            boolean revisorb = Revisor.InicioSesion(usuario, contrasena);
+            if(editorb || revisorb){
+                System.out.println("Peneeeeeee");
+            }
 
-                break;
-        
-            default:
-                break;
         }
         
     }

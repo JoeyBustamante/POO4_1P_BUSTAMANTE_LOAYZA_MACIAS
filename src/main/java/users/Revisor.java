@@ -38,9 +38,15 @@ public class Revisor extends Usuario{
             String linea;
             while ((linea=lector.readLine())!=null) {
                 String[] lista=linea.split(" ");
-                if (usuario.equals(lista[0]) && contrasena.equals(lista[1])){
-                    seEncuentra= true;
+
+                if( lista[3].equals("R")){
+                    if (usuario.equals(lista[4]) && contrasena.equals(lista[5])){
+                        seEncuentra= true;
+                    }
+
                 }
+                
+                
             }
             
         } catch (IOException e) {
