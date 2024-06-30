@@ -1,4 +1,9 @@
 package users;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Revisor extends Usuario{
     protected String especialidad;
     protected int articuloRevisado;
@@ -24,5 +29,26 @@ public class Revisor extends Usuario{
     public void setArticuloRevisado(int articuloRevisado){this.articuloRevisado=articuloRevisado;}
     public void setUserName(String userName){this.userName=userName;}
     public void setContrasena(String contrasena){this.contrasena=contrasena;}
+
+    //InicioSesion
+    public static boolean InicioSesion(String usuario, String contrasena){
+        boolean seEncuentra=false;
+        try {
+            BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"));
+            String linea;
+            while ((linea=lector.readLine())!=null) {
+                String[] lista=linea.split(" ");
+                if (usuario.equals(lista[0]) && contrasena.equals(lista[1])){
+                    seEncuentra= true;
+                }
+            }
+            
+        } catch (IOException e) {
+            System.out.println("Error de archivo");
+        }
+        return seEncuentra;
+    }        
+
+    
 
 }

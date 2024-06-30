@@ -6,8 +6,9 @@ public class Main {
     public static void main(String[] args) {
         
         Usuario autor=new Autor("Francis", "Loayza", "loayzafrancis@gmail.com", Rol.A, null, 0, null, null, null);
-        Usuario editor=new Editor("Joey", "Bustamante", "ejemplo", Rol.E, null, null, "Dios", "1234");
+        Editor editor=new Editor("Joey", "Bustamante", "ejemplo", Rol.E, null, null, "Dios", "1234");
         Sistema.AgergarListaUsuario(autor);
+        Sistema.AgergarListaUsuario(editor);
         System.out.println(Sistema.listaUsuario.toString());
         Sistema.registrarDatoUsuario();
 
@@ -16,6 +17,8 @@ public class Main {
         String usuario=sc.nextLine();
         System.out.println("Ingrese su Contrasena:");
         String contra=sc.nextLine();
+        boolean valor=Editor.InicioSesion(usuario, contra);
+        System.out.println(valor);
         
         /*
 

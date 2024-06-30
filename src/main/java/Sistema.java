@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import users.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,7 +21,17 @@ public class Sistema {
         try{
             BufferedWriter escrito=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Usuarios.txt",false));
             for (Usuario usuario : listaUsuario) {
-                escrito.write(usuario+"\n");
+                if(usuario instanceof Editor){
+                    Editor ed=(Editor) usuario;
+                    escrito.write(usuario+" "+ed.getUserName()+" "+ed.getContrasena()+"\n");
+                }
+                else if(usuario instanceof Revisor){
+                    Revisor re=(Revisor) usuario;
+                    escrito.write(usuario+" "+re.getUserName()+" "+re.getContrasena()+"\n");
+                }
+                else{
+                    escrito.write(usuario+"\n");
+                }
             }
             escrito.close();
         }catch(IOException e){
@@ -28,5 +39,5 @@ public class Sistema {
         }
 
     }
-    public static boolean leerArchivoUsuarios(){}
+   
 }
