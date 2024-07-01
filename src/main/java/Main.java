@@ -1,6 +1,3 @@
-import mail.Mail;
-import users.*;
-import java.util.Scanner;
 public class Main {
     Sistema sistema=new Sistema();
     public static void main(String[] args) {
@@ -15,11 +12,6 @@ public class Main {
         Interfaz inter = new Interfaz();
         inter.inicio();
         
-        /*
-
-        Mail.inicializarSistemaCorreo();
-        Mail.sendMail("chrismacmen9192@gmail.com", "prueba", "fuciona?");
-        */
 
     }
 }
