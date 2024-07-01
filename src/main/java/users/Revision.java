@@ -10,6 +10,12 @@ public class Revision {
     private String comentario;
     private int artID;
 
+    //Metodo static
+    public static void inicializarSistemaRevision(Articulo articulo){
+        //Recibe un articulo que se usara para crar una instacnia de revision y el nombre de la variable sera la id del articulo
+        //Y luego buscara al azar tanto revisores como un editor para inicializar el objeto de revision.
+    }
+
     //Constructor
     public Revision(Editor editor,ArrayList<Revisor> revisores, Articulo articulo, String comentario, int artID){
         this.editor=editor;
@@ -36,12 +42,14 @@ public class Revision {
 
     Scanner sc= new Scanner(System.in);
 
+    // Metodo para agregar comentarios
     private void agregarComentario(){
         System.out.println("Ingrese su comentario: ");
         String comentario = sc.nextLine();
         this.comentario=comentario;
     }
 
+    // Metodos para decidir
     public void decidir(Editor e){
         System.out.println("Ingrese su decision: (Y/N)");
         String respuesta = sc.nextLine();
@@ -99,6 +107,7 @@ public class Revision {
         }
     }
 
+    //Metodos para notificar
     public void notificar(Editor editor){
         Mail.inicializarSistemaCorreo();
         Mail.sendMail(editor.getCorreo(), "Se le asigno un articulo como editor", "Estimado "+editor.getNombre()+" "
@@ -124,6 +133,7 @@ public class Revision {
         + this.editor.getNombre()+" "+this.editor.getApellido()+". Se le informara sobre su proceso conforme el mismo avance.");
     }
 
+    //Metodos de enviar correo
     private void enviarCorreo(Autor autor, String correo, String asunto, String cuerpo){
         Mail.inicializarSistemaCorreo();
         Mail.sendMail(correo, asunto, cuerpo);
