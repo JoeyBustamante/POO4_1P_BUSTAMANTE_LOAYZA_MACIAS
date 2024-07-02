@@ -36,6 +36,7 @@ public class Articulo {
         }
     }
 
+    //toString
     public String toString() {
         // TODO Auto-generated method stub
         return autor.toString()+" "+this.codigo+" "+" "+this.datos;

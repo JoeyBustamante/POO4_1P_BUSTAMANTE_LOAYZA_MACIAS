@@ -11,15 +11,17 @@ package users;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Random;
 import java.util.ArrayList;
 public class Autor extends Usuario {
-    protected int id;
-    protected String institucion;
-    protected String campoDeInvestgacion;
-    protected ArrayList<Articulo> articulo=new ArrayList<Articulo>();
+    private int id;
+    private String institucion;
+    private String campoDeInvestgacion;
+    private ArrayList<Articulo> articulo=new ArrayList<Articulo>();
     
     //Constructor
     public Autor(String nombre, String apellido, String correo, Rol rol, int id, String institucion, String campoDeInvestigacion, ArrayList<Articulo> articulo){
@@ -80,22 +82,61 @@ public class Autor extends Usuario {
 
         
     }
+    public void encontrarAutor(){
+        try {
+            BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Investigadores.txt"));
+            String linea;
+            int cl=0;
+            boolean autorEncontrado=false;
+            while ((linea=br.readLine())!=null) {
+                String lista[]=linea.split(" ");
+                Usuario user=new Usuario(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]));
+                if(equals(user)){
+                    autorEncontrado=true;
+                    try(BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt"))) {
+                        for(int i=0;i<cl;i++){
+                            bw.newLine();
+                        }
+                        bw.write(toString());
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    break;
+                }
+                else{
+                    cl+=1;
+                }
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+    }
 
 
     public void guardarAutor(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",true))) {
-            writer.write(nombre+ " "+ apellido + " " + correo + " "+ "A"+" "+id+ " "+institucion+" "+campoDeInvestgacion+" "+articulo.toString());
+            writer.write(toString());
             writer.newLine();
         } catch (IOException e) {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
 
+    public  String codigoArticulos(){
+        ArrayList<String> codArt=new ArrayList<String>();
+        for(Articulo art:articulo){
+            codArt.add(String.valueOf(art.getCodigo()));
+        }
+        return codArt.toString();
+    }
+
     //toString
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return super.toString()+" "+this.id+" "+this.institucion+" "+this.campoDeInvestgacion;
+        return super.toString()+" "+this.id+" "+this.institucion+" "+this.campoDeInvestgacion+codigoArticulos();
     }
 
 
