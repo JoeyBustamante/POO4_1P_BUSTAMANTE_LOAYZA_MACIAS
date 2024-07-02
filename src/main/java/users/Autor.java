@@ -34,6 +34,7 @@ public class Autor extends Usuario {
     public int getId(){return this.id;}
     public String getInstitucion(){return this.institucion;}
     public String getCampoDeInvestigacion(){return this.campoDeInvestgacion;}
+    public Rol getRol(){return this.rol;}
     public ArrayList<Articulo> getArticulo(){return this.articulo;}
 
     //Setters
@@ -89,6 +90,14 @@ public class Autor extends Usuario {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
+
+    //toString
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString()+" "+this.id+" "+this.institucion+" "+this.campoDeInvestgacion;
+    }
+
 
 
 

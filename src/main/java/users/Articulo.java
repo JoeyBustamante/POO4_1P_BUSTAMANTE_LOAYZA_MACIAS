@@ -29,12 +29,17 @@ public class Articulo {
     public void guardarArticulo(){
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Articulos.txt",true))) {
-            writer.write(autor+" "+codigo+" "+"contenido:"+ datos);
+            writer.write(toString());
             writer.newLine();
         } catch (IOException e) {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
-    
+
+    public String toString() {
+        // TODO Auto-generated method stub
+        return autor.toString()+" "+this.codigo+" "+" "+this.datos;
+    }
+
 
 }
