@@ -31,7 +31,6 @@ public class Autor extends Usuario {
         this.campoDeInvestgacion=campoDeInvestigacion;
         this.articulo=articulo;
     }
-    
     //Getters
     public int getId(){return this.id;}
     public String getInstitucion(){return this.institucion;}
@@ -50,7 +49,7 @@ public class Autor extends Usuario {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese su nombre: ");
         String nombre= sc.nextLine();
-        System.out.println("Ingrese su apellido");
+        System.out.println("Ingrese su apellido:");
         String apellido = sc.nextLine();
         System.out.println("Ingrese su correo: ");
         String correo = sc.nextLine();
@@ -73,77 +72,68 @@ public class Autor extends Usuario {
         articulos.add(art);
 
         art.guardarArticulo();
-        //aut.guardarAutor();
+        aut.EncontrarAutor();
         
     }
 
-    public void EncontrarAutor(){//En prueba no le toquen nada
+    public void EncontrarAutor(){
+        ArrayList<String> listaLeida = new ArrayList<>();
         try {
-            ArrayList<String> listaLeida = new ArrayList<>();
+            
             ArrayList<String> listaescrita = new ArrayList<>();
             BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Investigadores.txt"));
             String linea;
             while ((linea=br.readLine())!=null) {
                 listaLeida.add(linea);
             }
-            for (int i=0; i<listaLeida.size()-1;i++) {
-                String l1=listaLeida.get(i);
-                String lista[]=l1.split(" ");
-                Usuario user=new Usuario(lista[0], lista[1], lista[2],Rol.valueOf(lista[3]));
-                if(equals(user)){
-                    System.out.println(user.toString());
-                    System.out.println("Entra");
-                    String lin1=lista[7].replace("[", "");
-                    String lin2=lin1.replace("]","");
-                    String list[]=lin2.split(",");
-                    //ArrayList<Articulo> listaArticulo=new ArrayList<Articulo>();
-                    for (String elementos : list) {
-                        String ele[]=elementos.split("-");
-                        Articulo art=new Articulo(this, Integer.parseInt(ele[1]),ele[2]);
-                        articulo.add(art);
-            
-                    }
-                    listaLeida.set(i, toString());
-                }
-                else{
-                    listaLeida.add(toString());
-                }
-                
-            }
-            
-            System.out.println(listaLeida.toString());
-            try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",false))){
-                for (int i=0; i<listaLeida.size()-1;i++) {
-                    String lin=listaLeida.get(i);
-                    System.out.println(lin);
-                    bw.write(lin);
-                    bw.newLine();
-                }
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
 
         } catch (IOException e) {
             // TODO: handle exception
         }
-    }
+        System.out.println(listaLeida.toString());
+        ArrayList<Articulo> listaArticulo=new ArrayList<Articulo>();
+        int contador=0;
+        boolean noEncuentra=true;
+        for (int i=0; i<listaLeida.size();i++) {
+            String l1=listaLeida.get(i);
+            String lista[]=l1.split(" ");
+            Usuario user=new Usuario(lista[0], lista[1], lista[2],Rol.valueOf(lista[3]));
+            if(equals(user)){
+                noEncuentra=false;
+                String lin1=lista[7].replace("[", "");
+                String lin2=lin1.replace("]","");
+                String list[]=lin2.split(",");
+                this.setId(Integer.parseInt(lista[4]));
 
-    public void guardarAutor(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",true))) {
-            writer.write(toString());
-            writer.newLine();
+                for (String elementos : list) {
+                    String ele[]=elementos.split("-");
+                    Articulo art=new Articulo(this, Integer.parseInt(ele[1]),ele[2]);
+                    this.articulo.add(art);
+                }
+                break;
+            }
+            else{
+                contador+=1;
+            }
+        }
+        if(!noEncuentra){
+            listaLeida.set(contador,toString());
+        }
+        else{
+            listaLeida.add(toString());
+        }
+        System.out.println(listaLeida.toString());
+        try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",false))){
+            for(String linea:listaLeida){
+                bw.write(linea+"\n");
+            }
+            
         } catch (IOException e) {
-            System.err.println("Error al escribir en el archivo: " + e.getMessage());
+            // TODO: handle exception
         }
+        
     }
 
-    public  String codigoArticulos(){
-        ArrayList<String> codArt=new ArrayList<String>();
-        for(Articulo art:articulo){
-            codArt.add(String.valueOf(art.getCodigo()));
-        }
-        return codArt.toString();
-    }
     
 
     //toString
