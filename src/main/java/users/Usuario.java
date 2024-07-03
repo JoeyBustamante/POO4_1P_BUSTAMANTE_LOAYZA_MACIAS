@@ -26,7 +26,7 @@ public class Usuario {
     public void setRol(Rol rol){this.rol=rol;}
 
     public boolean equals(Usuario usuario){
-        if(this.nombre.toUpperCase().equals(nombre.toUpperCase()) && this.apellido.toUpperCase().equals(apellido.toUpperCase()) && this.correo.toUpperCase().equals(correo.toUpperCase()) && this.rol.equals(rol)){
+        if(this.nombre.equals(usuario.getNombre()) && this.apellido.equals(usuario.getApellido()) && this.correo.equals(usuario.getCorreo()) && this.rol.equals(usuario.getRol())){
             return true;
         }
         else{

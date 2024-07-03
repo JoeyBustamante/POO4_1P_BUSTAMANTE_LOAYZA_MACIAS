@@ -8,7 +8,6 @@ public class Main {
         Sistema.AgergarListaUsuario(editor);
         System.out.println(Sistema.listaUsuario.toString());
         Sistema.registrarDatoUsuario();*/
-
         Interfaz inter = new Interfaz();
         inter.inicio();
         

@@ -73,47 +73,60 @@ public class Autor extends Usuario {
         articulos.add(art);
 
         art.guardarArticulo();
-        aut.guardarAutor();
-        
-
-
-
-
-
+        //aut.guardarAutor();
         
     }
-    public void encontrarAutor(){
+
+    public void EncontrarAutor(){//En prueba no le toquen nada
         try {
+            ArrayList<String> listaLeida = new ArrayList<>();
+            ArrayList<String> listaescrita = new ArrayList<>();
             BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Investigadores.txt"));
             String linea;
-            int cl=0;
-            boolean autorEncontrado=false;
             while ((linea=br.readLine())!=null) {
-                String lista[]=linea.split(" ");
-                Usuario user=new Usuario(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]));
+                listaLeida.add(linea);
+            }
+            for (int i=0; i<listaLeida.size()-1;i++) {
+                String l1=listaLeida.get(i);
+                String lista[]=l1.split(" ");
+                Usuario user=new Usuario(lista[0], lista[1], lista[2],Rol.valueOf(lista[3]));
                 if(equals(user)){
-                    autorEncontrado=true;
-                    try(BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt"))) {
-                        for(int i=0;i<cl;i++){
-                            bw.newLine();
-                        }
-                        bw.write(toString());
-                    } catch (Exception e) {
-                        // TODO: handle exception
+                    System.out.println(user.toString());
+                    System.out.println("Entra");
+                    String lin1=lista[7].replace("[", "");
+                    String lin2=lin1.replace("]","");
+                    String list[]=lin2.split(",");
+                    //ArrayList<Articulo> listaArticulo=new ArrayList<Articulo>();
+                    for (String elementos : list) {
+                        String ele[]=elementos.split("-");
+                        Articulo art=new Articulo(this, Integer.parseInt(ele[1]),ele[2]);
+                        articulo.add(art);
+            
                     }
-                    break;
+                    listaLeida.set(i, toString());
                 }
                 else{
-                    cl+=1;
+                    listaLeida.add(toString());
                 }
+                
+            }
+            
+            System.out.println(listaLeida.toString());
+            try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",false))){
+                for (int i=0; i<listaLeida.size()-1;i++) {
+                    String lin=listaLeida.get(i);
+                    System.out.println(lin);
+                    bw.write(lin);
+                    bw.newLine();
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             // TODO: handle exception
         }
-
     }
-
 
     public void guardarAutor(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",true))) {
@@ -131,12 +144,13 @@ public class Autor extends Usuario {
         }
         return codArt.toString();
     }
+    
 
     //toString
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return super.toString()+" "+this.id+" "+this.institucion+" "+this.campoDeInvestgacion+codigoArticulos();
+        return super.toString()+" "+this.id+" "+this.institucion+" "+this.campoDeInvestgacion+" "+this.articulo.toString();
     }
 
 
