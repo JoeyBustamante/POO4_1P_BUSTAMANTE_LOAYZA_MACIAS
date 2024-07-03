@@ -41,6 +41,12 @@ public class Revision {
 
 
     Scanner sc= new Scanner(System.in);
+    public void asignarEditor(){
+
+    }
+    public void asignarRevisor(){
+        
+    }
 
     // Metodo para agregar comentarios
     private void agregarComentario(){
