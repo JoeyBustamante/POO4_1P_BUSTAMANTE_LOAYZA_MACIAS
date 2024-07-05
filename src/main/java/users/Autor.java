@@ -69,6 +69,7 @@ public class Autor extends Usuario {
 
         Autor aut = new Autor(nombre, apellido, correo, Rol.A, codigoAutor, institucion, campoDeIvestigacion, articulos);
         Articulo art = new Articulo(aut, codigoArticulo, contenido);
+        Revision revision=new Revision(null, null, art, null, codigoArticulo);
         articulos.add(art);
 
         art.guardarArticulo();
