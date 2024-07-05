@@ -2,6 +2,12 @@ package users;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import java.util.Random;
+
 import mail.Mail;
 public class Revision {
     private Editor editor;
@@ -41,11 +47,52 @@ public class Revision {
 
 
     Scanner sc= new Scanner(System.in);
+
     public void asignarEditor(){
+        Random random=new Random();
+        Editor editorElegido;
+        ArrayList<Editor> editores=new ArrayList<Editor>();
+        try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"))) {
+            String linea;
+            while ((linea=br.readLine())!=null) {
+                String[] lista=linea.split(" ");
+                if(Rol.valueOf(lista[3])==Rol.E){
+                    Editor ed=new Editor(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]), lista[4], lista[5], lista[6], lista[7]);
+                    editores.add(ed);
+                }
+            }
+        } catch (IOException e) {
+            // TODO: handle exception
+        }
+        int posicion=random.nextInt(editores.size());
+        editorElegido=editores.get(posicion);
+        this.editor=editorElegido;
 
     }
     public void asignarRevisor(){
-        
+        Random random=new Random();
+        Random random2=new Random();
+        ArrayList<Revisor> revisores= new ArrayList<Revisor>();
+        try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"))) {
+            String linea;
+            while ((linea=br.readLine())!=null) {
+                String[] lista=linea.split(" ");
+                if(Rol.valueOf(lista[3])==Rol.R){
+                    Revisor rev=new Revisor(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]), lista[4], Integer.parseInt(lista[5]), lista[6], lista[7]);
+                    revisores.add(rev);
+                }
+            }            
+        } catch (IOException e) {
+            // TODO: handle exception
+        }
+        int posicion1=random.nextInt(revisores.size());
+        int posicion2=random2.nextInt(revisores.size());
+        while (posicion1==posicion2) {
+            posicion2=random2.nextInt(revisores.size());
+        }
+        this.revisores.add(revisores.get(posicion1));
+        this.revisores.add(revisores.get(posicion2));
+
     }
 
     // Metodo para agregar comentarios
