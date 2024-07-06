@@ -74,38 +74,40 @@ public class Revision {
     public void asignarRevisor(){
         Random random=new Random();
         Random random2=new Random();
-        ArrayList<Revisor> revisores= new ArrayList<Revisor>();
+        ArrayList<Revisor> Listarevisores= new ArrayList<Revisor>();
         try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"))) {
             String linea;
             while ((linea=br.readLine())!=null) {
                 String[] lista=linea.split(" ");
                 if(Rol.valueOf(lista[3])==Rol.R){
                     Revisor rev=new Revisor(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]), lista[4], Integer.parseInt(lista[5]), lista[6], lista[7]);
-                    revisores.add(rev);
+                    Listarevisores.add(rev);
                 }
             }            
         } catch (IOException e) {
             // TODO: handle exception
         }
-        int posicion1=random.nextInt(revisores.size());
-        int posicion2=random2.nextInt(revisores.size());
+        int posicion1=random.nextInt(Listarevisores.size());
+        int posicion2=random2.nextInt(Listarevisores.size());
         while (posicion1==posicion2) {
-            posicion2=random2.nextInt(revisores.size());
+            posicion2=random2.nextInt(Listarevisores.size());
         }
-        this.revisores.add(revisores.get(posicion1));
-        this.revisores.add(revisores.get(posicion2));
+        ArrayList<Revisor> rev= new ArrayList<Revisor>();
+        rev.add(Listarevisores.get(posicion1));
+        rev.add(Listarevisores.get(posicion2));
+        this.revisores=rev;
 
     }
 
     //Guardar en Revisiones.txt
     public void guardarRevision(){
-        try {
-            BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Revisiones.txt", false));
-            bw.write(toString());
+        try (BufferedWriter bw= new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Revisiones.txt",false))){
+            
+            bw.write(toString()+"\n");;
 
             
         } catch (IOException e) {
-            // TODO: handle exception
+            System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
 
@@ -218,6 +220,6 @@ public class Revision {
     }
 
     public String toString(){
-        return editor.getUserName()+" ["+revisores.get(1).getUserName()+","+revisores.get(2).getUserName()+"] "+articulo.getDatos()+" "+comentario+" "+artID;
+        return editor.getUserName()+" ["+revisores.get(0).getUserName()+"(),"+revisores.get(1).getUserName()+"()] "+articulo.getDatos()+" "+comentario+" "+artID;
     }
 }

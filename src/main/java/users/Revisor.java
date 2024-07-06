@@ -1,8 +1,11 @@
 package users;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Revisor extends Usuario{
     protected String especialidad;
@@ -59,6 +62,28 @@ public class Revisor extends Usuario{
 
 
     //Agregar comentario Articulo
+    public void AgergarComentario(){
+        ArrayList<String> listaLeida = new ArrayList<>();
+        try (BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisiones.txt"))){
+            
+        } catch (IOException e) {
+            // TODO: handle exception
+        }
+        for(String linea:listaLeida){
+            String[] lista=linea.split(" ");
+            
+        }
+        System.out.println("Ingerese el comentario: ");
+        
+        try {
+            BufferedWriter bw= new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Revisiones.txt",true));
+            
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
+    }
 
     
 

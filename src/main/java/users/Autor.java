@@ -75,6 +75,8 @@ public class Autor extends Usuario {
         aut.EncontrarAutor();
         revision.asignarEditor();
         revision.asignarRevisor();
+        revision.guardarRevision();
+        System.out.println(revision.toString());
 
         
     }
@@ -93,7 +95,6 @@ public class Autor extends Usuario {
         } catch (IOException e) {
             // TODO: handle exception
         }
-        System.out.println(listaLeida.toString());
         ArrayList<Articulo> listaArticulo=new ArrayList<Articulo>();
         int contador=0;
         boolean noEncuentra=true;
@@ -125,7 +126,7 @@ public class Autor extends Usuario {
         else{
             listaLeida.add(toString());
         }
-        System.out.println(listaLeida.toString());
+
         try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",false))){
             for(String linea:listaLeida){
                 bw.write(linea+"\n");
