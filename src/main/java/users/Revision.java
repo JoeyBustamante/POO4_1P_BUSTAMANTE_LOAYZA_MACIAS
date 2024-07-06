@@ -50,7 +50,7 @@ public class Revision {
 
     Scanner sc= new Scanner(System.in);
 
-    public void asignarEditor(){
+    public Editor asignarEditor(){
         Random random=new Random();
         Editor editorElegido;
         ArrayList<Editor> editores=new ArrayList<Editor>();
@@ -69,20 +69,21 @@ public class Revision {
         int posicion=random.nextInt(editores.size());
         editorElegido=editores.get(posicion);
         this.editor=editorElegido;
+        return this.editor;
 
     }
-    public void asignarRevisor(){
+    public ArrayList<Revisor> asignarRevisor(){
         Random random=new Random();
         Random random2=new Random();
         ArrayList<Revisor> Listarevisores= new ArrayList<Revisor>();
-        try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"))) {
+        try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisores.txt"))) {
             String linea;
             while ((linea=br.readLine())!=null) {
                 String[] lista=linea.split(" ");
-                if(Rol.valueOf(lista[3])==Rol.R){
+                //if(Rol.valueOf(lista[3])==Rol.R){
                     Revisor rev=new Revisor(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]), lista[4], Integer.parseInt(lista[5]), lista[6], lista[7]);
                     Listarevisores.add(rev);
-                }
+               // }
             }            
         } catch (IOException e) {
             // TODO: handle exception
@@ -92,10 +93,29 @@ public class Revision {
         while (posicion1==posicion2) {
             posicion2=random2.nextInt(Listarevisores.size());
         }
+
         ArrayList<Revisor> rev= new ArrayList<Revisor>();
-        rev.add(Listarevisores.get(posicion1));
-        rev.add(Listarevisores.get(posicion2));
+
+        Revisor r1 =Listarevisores.get(posicion1);
+        Revisor r2 =Listarevisores.get(posicion2);
+        rev.add(r1);
+        rev.add(r2);
+
+        try{
+            Adicionar1("src\\main\\java\\Archivos\\Revisores.txt", r1);
+            Adicionar1("src\\main\\java\\Archivos\\Revisores.txt", r2);
+
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+
+
         this.revisores=rev;
+        return rev;
+
+
 
     }
 
@@ -222,4 +242,62 @@ public class Revision {
     public String toString(){
         return editor.getUserName()+" ["+revisores.get(0).getUserName()+"(),"+revisores.get(1).getUserName()+"()] "+articulo.getDatos()+" "+comentario+" "+artID;
     }
+
+
+    //Leer archivo
+    public static ArrayList<String> leerArchivo(String rutaArchivo) throws IOException {
+        ArrayList<String> lineas = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea);
+            }
+        }
+        return lineas;
+    }
+
+    //Escribir en el Archivo
+
+    public static void escribirArchivo(String rutaArchivo, ArrayList<String> lineas) throws IOException {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            for (String linea : lineas) {
+                bw.write(linea);
+                bw.newLine();
+            }
+        }
+    }
+
+    //modificar Archivo 
+
+
+    public static void Adicionar1(String rutaArchivo,Revisor r1) throws IOException {
+        ArrayList<String> lineas = leerArchivo(rutaArchivo);
+        //int numRevisado1  = r1.articuloRevisado;
+        
+
+
+        for (int i = 0; i < lineas.size(); i++) {
+
+            String linea = lineas.get(i);
+            String [] sep = linea.split(" ");
+            if(r1.userName.equals(sep[6])){
+                int num= Integer.parseInt(sep[5]);
+                num+=1;
+                sep[5]=String.valueOf(num);
+
+                lineas.set(i,String.join(" ", sep));
+
+            }else{
+                System.out.println(sep[6]);
+            }
+
+            ;
+
+
+        }
+
+        escribirArchivo(rutaArchivo, lineas);
+    }
+
+
 }

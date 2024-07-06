@@ -74,12 +74,15 @@ public class Autor extends Usuario {
         art.guardarArticulo();
         aut.EncontrarAutor();
         revision.asignarEditor();
-        revision.asignarRevisor();
+        System.out.println(revision.asignarRevisor());
         revision.guardarRevision();
         System.out.println(revision.toString());
 
         
     }
+
+
+    
 
     public void EncontrarAutor(){
         ArrayList<String> listaLeida = new ArrayList<>();

@@ -23,6 +23,7 @@ public class Interfaz {
             case "1":
                 Autor.someterArticulo();
                 
+                
 
                 break;
             case "2":
@@ -38,6 +39,9 @@ public class Interfaz {
                     if(editorb || revisorb){
                         System.out.println("Bienvenido!");
                         ingreso=true;
+                        if (editorb){
+                            System.out.println("");
+                        }
                     }
                     else{
                         System.out.println("Usuario o Contrasenia incorrecta");
