@@ -57,6 +57,9 @@ public class Revisor extends Usuario{
         return seEncuentra;
     }        
 
+
+    //Agregar comentario Articulo
+
     
 
 }

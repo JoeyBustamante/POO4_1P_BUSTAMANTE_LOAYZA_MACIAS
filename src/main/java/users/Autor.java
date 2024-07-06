@@ -71,9 +71,11 @@ public class Autor extends Usuario {
         Articulo art = new Articulo(aut, codigoArticulo, contenido);
         Revision revision=new Revision(null, null, art, null, codigoArticulo);
         articulos.add(art);
-
         art.guardarArticulo();
         aut.EncontrarAutor();
+        revision.asignarEditor();
+        revision.asignarRevisor();
+
         
     }
 

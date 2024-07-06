@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.Random;
@@ -93,6 +95,18 @@ public class Revision {
         this.revisores.add(revisores.get(posicion1));
         this.revisores.add(revisores.get(posicion2));
 
+    }
+
+    //Guardar en Revisiones.txt
+    public void guardarRevision(){
+        try {
+            BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Revisiones.txt", false));
+            bw.write(toString());
+
+            
+        } catch (IOException e) {
+            // TODO: handle exception
+        }
     }
 
     // Metodo para agregar comentarios
@@ -201,5 +215,9 @@ public class Revision {
     private void enviarCorreo(Editor editor, String correo, String asunto, String cuerpo){
         Mail.inicializarSistemaCorreo();
         Mail.sendMail(correo, asunto, cuerpo);
+    }
+
+    public String toString(){
+        return editor.getUserName()+" ["+revisores.get(1).getUserName()+","+revisores.get(2).getUserName()+"] "+articulo.getDatos()+" "+comentario+" "+artID;
     }
 }

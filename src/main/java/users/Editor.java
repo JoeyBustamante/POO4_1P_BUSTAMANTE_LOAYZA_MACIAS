@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import java.util.Scanner;
+
 public class Editor extends Usuario {
     protected String especialidad;
     protected String nombreJournal;
@@ -57,6 +59,28 @@ public class Editor extends Usuario {
         }
         return seEncuentra;
     }    
+
+    //Decision
+    public String decisionFinal(int codigoArticulo){
+        String decision="";
+        try (BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisiones.txt"))){
+            String linea;
+            Scanner sc=new Scanner(System.in);
+            while ((linea=br.readLine())!=null) {
+                String[] lista=linea.split(" ");
+                if(codigoArticulo==Integer.parseInt(lista[4])){
+                    System.out.println(lista[3]);
+                    System.out.println("Aprueba el articulo Y/N");
+                    decision=sc.nextLine();
+                }
+                
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return decision;
+        
+    }
 
     
     
