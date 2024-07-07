@@ -42,7 +42,10 @@ public class Interfaz {
                         System.out.println("Bienvenido!");
                         ingreso=true;
                         if (editorb){
-                            
+                            Editor.mostrarCodArticulos(usuario);
+                            System.out.println("Ingrese el codigo del articulo que desea revisar:");
+                            int codi=sc.nextInt();
+                            Editor.decisionFinal(codi);
                         }else{
                             Revisor.estadoReviciones(usuario);
                         }

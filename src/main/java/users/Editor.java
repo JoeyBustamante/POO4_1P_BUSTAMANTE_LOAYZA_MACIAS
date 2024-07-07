@@ -60,10 +60,28 @@ public class Editor extends Usuario {
             System.out.println("Error de archivo");
         }
         return seEncuentra;
-    }    
+    }  
+    //Mostrar decisiones
+    public static void mostrarCodArticulos(String usuario){
+        try (BufferedReader br= new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisiones.txt"))){
+            String linea;
+            
+            while ((linea=br.readLine())!=null) {
+                String[] lista=linea.split(" ");
+                if(lista[0].equals(usuario)){
+                    System.out.println(lista[4]);
+                }
+                
+            }
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
+    }  
 
     //Decision
-    public void decisionFinal(int codigoArticulo){
+    public static void decisionFinal(int codigoArticulo){
         ArrayList<String> lineas=new ArrayList<String>();
         Decision decision;
         int posicion=0;
@@ -119,7 +137,7 @@ public class Editor extends Usuario {
     }
 
     //Comentario
-    public void agregarComentario(int codigoArticulo){
+    public static void agregarComentario(int codigoArticulo){
         ArrayList<String> lineas=new ArrayList<String>();
         String comentario;
         int posicion=0;
