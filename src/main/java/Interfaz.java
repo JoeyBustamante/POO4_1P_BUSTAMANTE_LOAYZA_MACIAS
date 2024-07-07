@@ -22,7 +22,8 @@ public class Interfaz {
         switch (tipo) {
             case "1":
                 Autor.someterArticulo();
-                
+
+
                 
 
                 break;
@@ -40,7 +41,9 @@ public class Interfaz {
                         System.out.println("Bienvenido!");
                         ingreso=true;
                         if (editorb){
-                            System.out.println("");
+                            
+                        }else{
+                            Revisor.estadoReviciones(usuario);
                         }
                     }
                     else{

@@ -72,7 +72,7 @@ public class Revision {
         return this.editor;
 
     }
-    public ArrayList<Revisor> asignarRevisor(){
+    public void asignarRevisor(Articulo art){
         Random random=new Random();
         Random random2=new Random();
         ArrayList<Revisor> Listarevisores= new ArrayList<Revisor>();
@@ -100,20 +100,23 @@ public class Revision {
         Revisor r2 =Listarevisores.get(posicion2);
         rev.add(r1);
         rev.add(r2);
-
         try{
             Adicionar1("src\\main\\java\\Archivos\\Revisores.txt", r1);
             Adicionar1("src\\main\\java\\Archivos\\Revisores.txt", r2);
-
-
         }catch(IOException e){
             e.printStackTrace();
         }
-
-
-
         this.revisores=rev;
-        return rev;
+
+        String contenido = "\n"+r1.userName+" N/A N/A "+art.getCodigo();
+
+        try (FileWriter escritor = new FileWriter("src\\main\\java\\Archivos\\RevicionesP.txt", true)) {
+            escritor.write(contenido);
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo: " + e.getMessage());
+        }
+
+
 
 
 
@@ -132,7 +135,7 @@ public class Revision {
     }
 
     // Metodo para agregar comentarios
-    private void agregarComentario(){
+    public void agregarComentario(){
         System.out.println("Ingrese su comentario: ");
         String comentario = sc.nextLine();
         this.comentario=comentario;
@@ -288,7 +291,7 @@ public class Revision {
                 lineas.set(i,String.join(" ", sep));
 
             }else{
-                System.out.println(sep[6]);
+               // System.out.println(sep[6]);
             }
 
             ;

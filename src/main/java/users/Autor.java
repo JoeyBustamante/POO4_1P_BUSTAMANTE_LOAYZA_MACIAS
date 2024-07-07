@@ -74,7 +74,7 @@ public class Autor extends Usuario {
         art.guardarArticulo();
         aut.EncontrarAutor();
         revision.asignarEditor();
-        System.out.println(revision.asignarRevisor());
+        revision.asignarRevisor( art);
         revision.guardarRevision();
         System.out.println(revision.toString());
 

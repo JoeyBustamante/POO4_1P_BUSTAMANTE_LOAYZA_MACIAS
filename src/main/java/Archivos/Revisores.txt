@@ -1,6 +1,6 @@
-Rey Leon uieoweuwio R Mate1 0 rey l
-Papa Noel riewoqirqo R Mate2 0 papa b
-noelia Leon uieoweuwio R Mat3 1 noelia l
-Valentoina Noel riewoqirqo R Mate4 0 Valentoina b
-Tronco Leon uieoweuwio R Mate5 1 Tronco l
-Patricio Noel riewoqirqo R Mate6 0 Patricio b
+Rey Leon uieoweuwio R Mate1 4 rey 1234
+Papa Noel riewoqirqo R Mate2 5 papa 1234
+noelia Leon uieoweuwio R Mat3 5 noelia 1234
+Valentoina Noel riewoqirqo R Mate4 6 Valentoina 1234
+Tronco Leon uieoweuwio R Mate5 3 Tronco 1234
+Patricio Noel riewoqirqo R Mate6 1 Patricio 1234

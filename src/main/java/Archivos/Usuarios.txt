@@ -1,8 +1,8 @@
 Francis Loayza loayzafrancis@gmail.com A
 Joey Bustamante ejemplo E Dios 1234 choi 231
-Rey Leon uieoweuwio R Mate 0 f l
-Papa Noel riewoqirqo R Mate 0 j b
-noelia Leon uieoweuwio R Mate 0 f l
-Valentoina Noel riewoqirqo R Mate 0 j b
-Tronco Leon uieoweuwio R Mate 0 f l
-Patricio Noel riewoqirqo R Mate 0 j b
+Rey Leon uieoweuwio R Mate1 1 rey 1234
+Papa Noel riewoqirqo R Mate2 1 papa 1234
+noelia Leon uieoweuwio R Mat3 2 noelia 1234
+Valentoina Noel riewoqirqo R Mate4 3 Valentoina 1234
+Tronco Leon uieoweuwio R Mate5 1 Tronco 1234
+Patricio Noel riewoqirqo R Mate6 0 Patricio 1234

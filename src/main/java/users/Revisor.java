@@ -1,5 +1,5 @@
 package users;
-
+import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -20,6 +20,7 @@ public class Revisor extends Usuario{
         this.userName=userName;
         this.contrasena=contrasena;
     }
+
 
     //Getters
     public String getEspecialidad(){return this.especialidad;}
@@ -43,7 +44,7 @@ public class Revisor extends Usuario{
                 String[] lista=linea.split(" ");
 
                 if( lista[3].equals("R")){
-                    if (usuario.equals(lista[4]) && contrasena.equals(lista[5])){
+                    if (usuario.equals(lista[6]) && contrasena.equals(lista[7])){
                         seEncuentra= true;
                         return seEncuentra;
                         
@@ -85,6 +86,65 @@ public class Revisor extends Usuario{
         
     }
 
-    
+    public static void estadoReviciones(String usuario){
+
+        ArrayList<String> opciones = new ArrayList<>() ;
+        try {
+            BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\RevicionesP.txt"));
+            String linea;
+            int opcion =0;
+            boolean encontrado = false;
+            while ((linea=lector.readLine())!=null) {
+                String[] lista=linea.split(" ");
+                String dato= lista[0];
+                if(dato.equals(usuario)){
+                    if(!encontrado){
+                        System.out.println("Tiene Articulos pendientes:");
+                        encontrado=true;
+                    }else{
+                        opcion+=1;
+                        opciones.add(lista[3]);
+                        System.out.println(opcion+ ": "+lista[3] );
+                        
+                    }
+                    
+                    //for(int i=0;lector.readLine()!=null;i++){
+                        
+                   // }
+                    
+                }else{
+                    //System.out.println("No se le an asignado nada aun");
+                }
+                
+
+                
+            }
+            
+            
+        } catch (IOException e) {
+            System.out.println("Error de archivo");
+        }
+        System.out.println("Seleccione el articulo que desea revisar");
+        Scanner sc = new Scanner(System.in);
+        int opcion2 = sc.nextInt();
+        String codigo = opciones.get(opcion2-1);
+        try {
+            BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\RevicionesP.txt"));
+            String linea;
+            while ((linea=lector.readLine())!=null) {
+                String[] lista=linea.split(" ");   
+                if(lista[3].equals(codigo)){
+                    System.out.println("Comentarios: "+lista[1]);
+                    System.out.println("Decision de aceptar o rechazar: "+lista[2]);
+                    System.out.println(" ");
+                    System.out.println("Presione 1 para comentar o 2 para tomar una decicion ");
+                    int opcion3=sc.nextInt();
+                }  
+            }
+            
+        } catch (IOException e) {
+            System.out.println("Error de archivo");
+        }
+    }
 
 }
