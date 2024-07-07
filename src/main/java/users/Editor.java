@@ -132,17 +132,6 @@ public class Editor extends Usuario {
                 String[] lista=linea.split(" ");
                 if(codigoArticulo==Integer.parseInt(lista[4])){
                     posicion=lineas.indexOf(linea);
-                    try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\RevicionesP.txt"))){
-                        String linea1;
-                        while ((linea1=br1.readLine())!=null) {
-                            String[] lista1=linea1.split(" ");
-                            if(Integer.parseInt(lista1[4])==codigoArticulo){
-                                System.out.println(lista1[0]+" "+lista1[1]+" "+ lista1[2]);
-                            }
-                        }
-                    } catch (Exception e) {
-                        // TODO: handle exception
-                    }
                     System.out.println("Ingrese su comentario:");
                     comentario=sc.nextLine();
                     lin=lista[0]+" "+lista[1]+" "+lista[2]+" "+comentario+" "+lista[4]+" "+lista[5];
