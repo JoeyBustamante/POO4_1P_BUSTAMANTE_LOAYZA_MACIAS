@@ -1,1 +1,1 @@
-choi [rey(),papa()] g null 1677
+choi [rey,papa] g null 1677 null

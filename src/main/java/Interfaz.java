@@ -21,6 +21,7 @@ public class Interfaz {
         String tipo = sc.nextLine().toUpperCase();
         switch (tipo) {
             case "1":
+                System.out.println("--------------------------");
                 Autor.someterArticulo();
 
 

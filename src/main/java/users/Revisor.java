@@ -128,23 +128,82 @@ public class Revisor extends Usuario{
         Scanner sc = new Scanner(System.in);
         int opcion2 = sc.nextInt();
         String codigo = opciones.get(opcion2-1);
+        int opcion3=0;
+        ArrayList<String> lineas=new ArrayList<String>();
         try {
             BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\RevicionesP.txt"));
             String linea;
             while ((linea=lector.readLine())!=null) {
                 String[] lista=linea.split(" ");   
+                lineas.add(linea);
                 if(lista[3].equals(codigo)){
                     System.out.println("Comentarios: "+lista[1]);
                     System.out.println("Decision de aceptar o rechazar: "+lista[2]);
                     System.out.println(" ");
                     System.out.println("Presione 1 para comentar o 2 para tomar una decicion ");
-                    int opcion3=sc.nextInt();
+                    opcion3=sc.nextInt();
+
                 }  
             }
-            
         } catch (IOException e) {
             System.out.println("Error de archivo");
         }
+        while (opcion3!= 1 && opcion3!=2) {
+            System.out.println("Error al seleccionar la opcion!");
+            System.out.println("Presione 1 para comentar o 2 para tomar una decicion ");
+            opcion3=sc.nextInt();
+            
+        }
+        int posicion=0;
+        String cambio="";
+        if(opcion3==1){
+            System.out.println("Ingrese el comentario: ");
+            sc.nextLine();
+            String comentario=sc.nextLine();
+            for(String linea: lineas){
+                String[] lista= linea.split(" ");
+                if(lista[3].equals(codigo)){
+                    posicion=lineas.indexOf(linea);
+                    lista[1]=comentario;
+                    cambio=lista[0]+" "+lista[1]+" "+lista[2]+" "+lista[3];
+                }
+                
+            }
+        }
+        else if(opcion3==2){
+            System.out.println("Ingrese su decision(ACEPTADO/RECHAZADO):");
+            sc.nextLine();
+            String decision=sc.nextLine().toUpperCase();
+            boolean incorrecto1=decision.equals(Decision.RECHAZADO.toString());
+            boolean incorrecto2=decision.equals(Decision.ACEPTADO.toString());
+            while(!incorrecto1 && !incorrecto2){
+                System.out.println("Decision no precisa");
+                System.out.println("Ingrese su decision(ACEPTADO/RECHAZADO):");
+                decision=sc.nextLine().toUpperCase();
+                incorrecto1=decision.equals(Decision.RECHAZADO.toString());
+                incorrecto2=decision.equals(Decision.ACEPTADO.toString());
+            }
+            for(String linea:lineas){
+                String[] lista=linea.split(" ");
+                if(lista[3].equals(codigo)){
+                    lista[2]=Decision.valueOf(decision).toString();
+                    posicion=lineas.indexOf(linea);
+                    cambio=lista[0]+" "+lista[1]+" "+lista[2]+" "+lista[3];
+                    System.out.println(cambio);
+                }
+            }
+        }
+        lineas.set(posicion, cambio);
+        try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\RevicionesP.txt",false))){
+            for(String linea: lineas){
+                bw.write(linea+"\n");
+            }
+            
+        } catch (IOException e) {
+            // TODO: handle exception
+        }
+        
+        
     }
 
 }

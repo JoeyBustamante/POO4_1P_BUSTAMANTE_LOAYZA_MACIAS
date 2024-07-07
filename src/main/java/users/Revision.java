@@ -243,7 +243,7 @@ public class Revision {
     }
 
     public String toString(){
-        return editor.getUserName()+" ["+revisores.get(0).getUserName()+"(),"+revisores.get(1).getUserName()+"()] "+articulo.getDatos()+" "+comentario+" "+artID;
+        return editor.getUserName()+" ["+revisores.get(0).getUserName()+","+revisores.get(1).getUserName()+"] "+articulo.getDatos()+" "+comentario+" "+artID+" "+"null";
     }
 
 
