@@ -62,7 +62,8 @@ public class Editor extends Usuario {
         return seEncuentra;
     }  
     //Mostrar decisiones
-    public static void mostrarCodArticulos(String usuario){
+    public static ArrayList<String> mostrarCodArticulos(String usuario){
+        ArrayList<String> codigos=new ArrayList<String>();
         try (BufferedReader br= new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisiones.txt"))){
             String linea;
             
@@ -70,6 +71,7 @@ public class Editor extends Usuario {
                 String[] lista=linea.split(" ");
                 if(lista[0].equals(usuario)){
                     System.out.println(lista[4]);
+                    codigos.add(lista[4]);
                 }
                 
             }
@@ -77,6 +79,7 @@ public class Editor extends Usuario {
         } catch (Exception e) {
             // TODO: handle exception
         }
+        return codigos;
         
     }  
 
@@ -98,7 +101,7 @@ public class Editor extends Usuario {
                         String linea1;
                         while ((linea1=br1.readLine())!=null) {
                             String[] lista1=linea1.split(" ");
-                            if(Integer.parseInt(lista1[4])==codigoArticulo){
+                            if(Integer.parseInt(lista1[3])==codigoArticulo){
                                 System.out.println(lista1[0]+" "+lista1[1]+" "+ lista1[2]);
                             }
                         }

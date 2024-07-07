@@ -42,10 +42,28 @@ public class Interfaz {
                         System.out.println("Bienvenido!");
                         ingreso=true;
                         if (editorb){
-                            Editor.mostrarCodArticulos(usuario);
+                            ArrayList<String>codigos=Editor.mostrarCodArticulos(usuario);
                             System.out.println("Ingrese el codigo del articulo que desea revisar:");
                             int codi=sc.nextInt();
+                            boolean incorrecto=true;
+                            do {
+                                System.out.println("Entra");
+                                for(String codigo:codigos){
+                                    if(codi==Integer.parseInt(codigo)){
+                                        incorrecto=false;
+                                    }
+                                    else{
+                                        System.out.println("Ingreso de codigo incorrecto");
+                                        for(String codig1: codigos){
+                                            System.out.println(codig1);
+                                        }
+                                        System.out.println("Ingrese el codigo del articulo que desea revisar:");
+                                        codi=sc.nextInt();
+                                    }
+                                }
+                            } while (incorrecto);
                             Editor.decisionFinal(codi);
+                            Editor.agregarComentario(codi);
                         }else{
                             Revisor.estadoReviciones(usuario);
                         }
