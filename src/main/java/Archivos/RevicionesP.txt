@@ -1,11 +1,15 @@
-rey N/A N/A 7897
-rey N/A N/A 5433
-rey N/A N/A 2452
-rey N/A N/A 4597
-Patricio N/A N/A 4575
-Valentoina N/A N/A 5778
-papa N/A N/A 3036
-papa N/A N/A 6513
-rey N/A N/A 8746
-Tronco N/A N/A 8711
-rey N/A N/A 1677
+rey_N/A_N/A_7897
+rey_N/A_N/A_5433
+rey_N/A_N/A_2452
+rey_N/A_N/A_4597
+Patricio_N/A_N/A_4575
+Valentoina_N/A_N/A_5778
+papa_N/A_N/A_3036
+papa_N/A_N/A_6513
+rey_N/A_N/A_8746
+Tronco_N/A_N/A_8711
+rey_N/A_N/A_1677
+rey_N/A N/A_8785
+rey_N/A N/A_5546
+Patricio_N/A N/A_7972
+Valentoina_N/A N/A_8412

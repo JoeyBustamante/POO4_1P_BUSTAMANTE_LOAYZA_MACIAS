@@ -41,7 +41,7 @@ public class Revisor extends Usuario{
             BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"));
             String linea;
             while ((linea=lector.readLine())!=null) {
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
 
                 if( lista[3].equals("R")){
                     if (usuario.equals(lista[6]) && contrasena.equals(lista[7])){
@@ -71,7 +71,7 @@ public class Revisor extends Usuario{
             // TODO: handle exception
         }
         for(String linea:listaLeida){
-            String[] lista=linea.split(" ");
+            String[] lista=linea.split("_");
             
         }
         System.out.println("Ingerese el comentario: ");
@@ -95,7 +95,7 @@ public class Revisor extends Usuario{
             int opcion =0;
             boolean encontrado = false;
             while ((linea=lector.readLine())!=null) {
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 String dato= lista[0];
                 if(dato.equals(usuario)){
                     if(!encontrado){
@@ -134,7 +134,7 @@ public class Revisor extends Usuario{
             BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\RevicionesP.txt"));
             String linea;
             while ((linea=lector.readLine())!=null) {
-                String[] lista=linea.split(" ");   
+                String[] lista=linea.split("_");   
                 lineas.add(linea);
                 if(lista[3].equals(codigo)){
                     System.out.println("Comentarios: "+lista[1]);
@@ -161,11 +161,11 @@ public class Revisor extends Usuario{
             sc.nextLine();
             String comentario=sc.nextLine();
             for(String linea: lineas){
-                String[] lista= linea.split(" ");
+                String[] lista= linea.split("_");
                 if(lista[3].equals(codigo)){
                     posicion=lineas.indexOf(linea);
                     lista[1]=comentario;
-                    cambio=lista[0]+" "+lista[1]+" "+lista[2]+" "+lista[3];
+                    cambio=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+lista[3];
                 }
                 
             }
@@ -184,11 +184,11 @@ public class Revisor extends Usuario{
                 incorrecto2=decision.equals(Decision.ACEPTADO.toString());
             }
             for(String linea:lineas){
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 if(lista[3].equals(codigo)){
                     lista[2]=Decision.valueOf(decision).toString();
                     posicion=lineas.indexOf(linea);
-                    cambio=lista[0]+" "+lista[1]+" "+lista[2]+" "+lista[3];
+                    cambio=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+lista[3];
                     System.out.println(cambio);
                 }
             }

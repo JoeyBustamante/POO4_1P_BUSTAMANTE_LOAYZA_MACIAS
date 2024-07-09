@@ -37,7 +37,7 @@ public class Usuario {
     //Metodo toString
     @Override
     public String toString(){
-        return this.nombre+" "+this.apellido+" "+this.correo+" "+this.rol;
+        return this.nombre+"_"+this.apellido+"_"+this.correo+"_"+this.rol;
     }    
     
 }

@@ -57,7 +57,7 @@ public class Revision {
         try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"))) {
             String linea;
             while ((linea=br.readLine())!=null) {
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 if(Rol.valueOf(lista[3])==Rol.E){
                     Editor ed=new Editor(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]), lista[4], lista[5], lista[6], lista[7]);
                     editores.add(ed);
@@ -79,11 +79,12 @@ public class Revision {
         try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisores.txt"))) {
             String linea;
             while ((linea=br.readLine())!=null) {
-                String[] lista=linea.split(" ");
-                //if(Rol.valueOf(lista[3])==Rol.R){
+                String[] lista=linea.split("_");
+                System.out.println(lista[3]);
+                if(Rol.valueOf(lista[3]).equals(Rol.R)){
                     Revisor rev=new Revisor(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]), lista[4], Integer.parseInt(lista[5]), lista[6], lista[7]);
                     Listarevisores.add(rev);
-               // }
+                }
             }            
         } catch (IOException e) {
             // TODO: handle exception
@@ -108,7 +109,7 @@ public class Revision {
         }
         this.revisores=rev;
 
-        String contenido = "\n"+r1.userName+" N/A N/A "+art.getCodigo();
+        String contenido = "\n"+r1.userName+"_N/A N/A_"+art.getCodigo();
 
         try (FileWriter escritor = new FileWriter("src\\main\\java\\Archivos\\RevicionesP.txt", true)) {
             escritor.write(contenido);
@@ -124,7 +125,7 @@ public class Revision {
 
     //Guardar en Revisiones.txt
     public void guardarRevision(){
-        try (BufferedWriter bw= new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Revisiones.txt",false))){
+        try (BufferedWriter bw= new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Revisiones.txt",true))){
             
             bw.write(toString()+"\n");;
 
@@ -243,7 +244,7 @@ public class Revision {
     }
 
     public String toString(){
-        return editor.getUserName()+" ["+revisores.get(0).getUserName()+","+revisores.get(1).getUserName()+"] "+articulo.getDatos()+" "+comentario+" "+artID+" "+"null";
+        return editor.getUserName()+"_["+revisores.get(0).getUserName()+","+revisores.get(1).getUserName()+"]_"+articulo.getDatos()+"_"+comentario+"_"+artID+"_"+"null";
     }
 
 
@@ -282,13 +283,13 @@ public class Revision {
         for (int i = 0; i < lineas.size(); i++) {
 
             String linea = lineas.get(i);
-            String [] sep = linea.split(" ");
+            String [] sep = linea.split("_");
             if(r1.userName.equals(sep[6])){
                 int num= Integer.parseInt(sep[5]);
                 num+=1;
                 sep[5]=String.valueOf(num);
 
-                lineas.set(i,String.join(" ", sep));
+                lineas.set(i,String.join("_", sep));
 
             }else{
                // System.out.println(sep[6]);
