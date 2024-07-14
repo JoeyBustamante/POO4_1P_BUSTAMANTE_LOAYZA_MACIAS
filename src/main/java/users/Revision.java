@@ -72,6 +72,7 @@ public class Revision {
         return this.editor;
 
     }
+
     public void asignarRevisor(Articulo art){
         Random random=new Random();
         Random random2=new Random();
@@ -80,7 +81,6 @@ public class Revision {
             String linea;
             while ((linea=br.readLine())!=null) {
                 String[] lista=linea.split("_");
-                System.out.println(lista[3]);
                 if(Rol.valueOf(lista[3]).equals(Rol.R)){
                     Revisor rev=new Revisor(lista[0], lista[1], lista[2], Rol.valueOf(lista[3]), lista[4], Integer.parseInt(lista[5]), lista[6], lista[7]);
                     Listarevisores.add(rev);

@@ -13,7 +13,7 @@ public class Revisor extends Usuario{
     protected String userName;
     protected String contrasena;
 
-    public Revisor(String nombre, String apellido, String correo,Rol rol, String especialidad, int ArticuloRevisado, String userName, String contrasena){
+    public Revisor(String nombre, String apellido, String correo,Rol rol, String especialidad, int articuloRevisado, String userName, String contrasena){
         super(nombre,apellido,correo,rol);
         this.especialidad=especialidad;
         this.articuloRevisado=articuloRevisado;
@@ -206,4 +206,8 @@ public class Revisor extends Usuario{
         
     }
 
+    @Override
+    public String toString(){
+        return super.toString()+"_"+ especialidad+" "+articuloRevisado+" "+ userName+" "+contrasena;
+    }
 }

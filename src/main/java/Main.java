@@ -1,3 +1,5 @@
+import users.Sistema;
+
 public class Main {
     Sistema sistema=new Sistema();
     public static void main(String[] args) {
@@ -8,8 +10,8 @@ public class Main {
         Sistema.AgergarListaUsuario(editor);
         System.out.println(Sistema.listaUsuario.toString());
         Sistema.registrarDatoUsuario();*/
-        Interfaz inter = new Interfaz();
-        inter.inicio();
+        
+        Interfaz.inicio();
         
 
     }

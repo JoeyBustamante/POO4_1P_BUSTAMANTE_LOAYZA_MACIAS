@@ -128,6 +128,8 @@ public class Autor extends Usuario {
         }
         else{
             listaLeida.add(toString());
+            Sistema.listaUsuario.add(this);
+            Sistema.registrarDatoUsuario();
         }
 
         try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",false))){
