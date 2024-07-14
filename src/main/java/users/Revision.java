@@ -143,7 +143,7 @@ public class Revision {
 
 
     //Metodos para notificar
-    public void notificarAutor(){
+    public void notificar(){
         Mail.inicializarSistemaCorreo();
         Mail.sendMail(this.articulo.getAutor().getCorreo() , "Su articulo entro a revision", "Se le informa que su articulo"
         +" sera revisado por "+this.revisores.get(0).getNombre()+" "+this.revisores.get(0).getApellido()+" y por "
