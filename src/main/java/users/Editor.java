@@ -85,7 +85,7 @@ public class Editor extends Usuario {
     }  
 
     //Decision
-    public static void decisionFinal(int codigoArticulo){
+    public static void decisionFinal(int codigoArticulo,String usuario){
         ArrayList<String> lineas=new ArrayList<String>();
         Decision decision;
         int posicion=0;
@@ -106,7 +106,7 @@ public class Editor extends Usuario {
                                 System.out.println(lista1[0]+" "+lista1[1]+" "+ lista1[2]);
                             }
                         }
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         // TODO: handle exception
                     }
                     System.out.println("Aprueba el articulo ACEPTADO/RECHAZADO");
@@ -121,11 +121,40 @@ public class Editor extends Usuario {
                         incorrecto2=deci.equals(Decision.ACEPTADO.toString());
                     }
                     decision=Decision.valueOf(deci);
+                    int codAutor=0;
+                    try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Articulos.txt"));){
+                        while((linea=br1.readLine())!=null){
+                            String[] lista1=linea.split("-");
+                            if(codigoArticulo==Integer.parseInt(lista1[1])){
+                                codAutor=Integer.parseInt(lista1[0]);
+                            }
+                        }
+                        
+                    } catch (IOException e) {
+                        // TODO: handle exception
+                    }
+                    Autor autor=new Autor(null, null, null, null, codAutor,null, null, null);
+                    try (BufferedReader br2=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Investigadores.txt"))){
+                        while ((linea=br2.readLine())!=null) {
+                            String[] lista2=linea.split("_");
+                            if(codAutor==Integer.parseInt(lista2[3])){
+                                autor.setApellido(lista2[1]);
+                                autor.setNombre(lista2[0]);
+                                autor.setCorreo(lista2[2]);
+                                autor.setRol(Rol.valueOf(lista2[3]));
+                                autor.setInstitucion(lista2[5]);
+                                autor.setCampoDeInvestigacion(lista2[6]);
+
+
+                            }
+                        }
+                        
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
                     lin=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+lista[3]+"_"+lista[4]+"_"+decision.toString();
                     // AQUI VA LA MODIFICACION (ELIMINAR ESTE COMENTARIO LUEGO DE REALIZARLA)
-                    Revision.enviarCorreo(/* Acceder al objeto autor que pertenece el articulo el metodo se encarga de acceder al correo */ , "El editor" + decision+ "su articulo",""+ 
-                    "Su articulo fue" + decision + "por el editor "+ nombre +" "+ apellido +
-                    " y su articulo sera publicado en caso de haber sido aceptado.");
+                    Revision.enviarCorreo(autor , "El editor" + decision+ "su articulo",""+ "Su articulo fue" + decision + "por el editor "+ usuario +" y su articulo sera publicado en caso de haber sido aceptado.");
 
                 }
                 

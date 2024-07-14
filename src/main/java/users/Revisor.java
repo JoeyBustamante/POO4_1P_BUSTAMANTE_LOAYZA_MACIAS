@@ -194,10 +194,57 @@ public class Revisor extends Usuario{
                     System.out.println(cambio);
                 }
             }
-            // --------------------- AQUI -------------------------------
-            Revision.enviarCorreo(/* Acceder al objeto de usuario que pertenece el articulo */ , "Un revisor"+ decision +"su articulo",
-            "Su articulo fue rechazado por el revisor "+r.getNombre()+" "+r.getApellido()+" y a emitido el siguiente comentario: "
-                    + '"'+ comentariop +'"');
+            // --------------------- AQUI -------------------------------//
+            String nombre=null;
+            String apellido=null;
+            try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisores.txt"))){
+                String linea;
+                while ((linea=br1.readLine())!=null) {
+                    String[] lista=linea.split("_");
+                    if(lista[6].equals(usuario)){
+                        nombre=lista[0];
+                        apellido=lista[1];
+                    }
+
+                    
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+            int codAutor=0;
+            try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Articulos.txt"));){
+                String linea;
+                while((linea=br1.readLine())!=null){
+                    String[] lista1=linea.split("-");
+                    if(Integer.parseInt(codigo)==Integer.parseInt(lista1[1])){
+                        codAutor=Integer.parseInt(lista1[0]);
+                    }
+                }
+                
+            } catch (IOException e) {
+                // TODO: handle exception
+            }
+            Autor autor=new Autor(null, null, null, null, codAutor,null, null, null);
+            try (BufferedReader br2=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Investigadores.txt"))){
+                String linea;
+                while ((linea=br2.readLine())!=null) {
+                    String[] lista2=linea.split("_");
+                    if(codAutor==Integer.parseInt(lista2[3])){
+                        autor.setApellido(lista2[1]);
+                        autor.setNombre(lista2[0]);
+                        autor.setCorreo(lista2[2]);
+                        autor.setRol(Rol.valueOf(lista2[3]));
+                        autor.setInstitucion(lista2[5]);
+                        autor.setCampoDeInvestigacion(lista2[6]);
+
+
+                    }
+                }
+            Revision.enviarCorreo(autor , "Un revisor"+ decision +"su articulo",
+            "Su articulo fue"+decision+" por el revisor "+nombre+" "+apellido+" y a emitido el siguiente comentario: "+ '"'+ comentariop +'"');
+        }catch(IOException e){
+
+        }
         }
         lineas.set(posicion, cambio);
         try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\RevicionesP.txt",false))){

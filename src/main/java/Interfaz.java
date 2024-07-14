@@ -59,7 +59,7 @@ public interface Interfaz {
                                     }
                                 }
                             } while (incorrecto);
-                            Editor.decisionFinal(codi);
+                            Editor.decisionFinal(codi,usuario);
                             Editor.agregarComentario(codi);
                         }else{
                             Revisor.estadoReviciones(usuario);

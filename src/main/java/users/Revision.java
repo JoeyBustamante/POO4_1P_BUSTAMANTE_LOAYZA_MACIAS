@@ -156,9 +156,7 @@ public class Revision {
         if(user instanceof Editor){
             Editor editor=(Editor)user;
             enviarCorreo(editor, "Se le asigno un articulo como editor", "Estimado "+editor.getNombre()+" "
-        + editor.getApellido()+" se le envio este articulo para que de su aprobacion luego de que fue revisado por los revisores "
-        + this.revisores.get(0).getNombre()+" "+this.revisores.get(0).getApellido()+ " y "+this.revisores.get(1).getNombre()
-        + this.revisores.get(1).getApellido()+ "se le solicita que emita su respuesta de si el articulo se publicara o no.");
+        + editor.getApellido()+" se le envio este articulo para que de su aprobacion luego de que fue revisado por los revisores");
         } else if(user instanceof Revisor){
             Revisor revisor=(Revisor)user;
             enviarCorreo(revisor, "Se le asgino una articulo para revision", "Estimado "+revisor.getNombre()+" "+revisor.getApellido()
@@ -168,7 +166,7 @@ public class Revision {
     }
 
     //Metodos de enviar correo
-    private static void enviarCorreo(Usuario user, String asunto, String cuerpo){
+    public static void enviarCorreo(Usuario user, String asunto, String cuerpo){
         Mail.inicializarSistemaCorreo();
         Mail.sendMail(user.correo, asunto, cuerpo);
     }
