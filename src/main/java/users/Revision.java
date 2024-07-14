@@ -18,11 +18,6 @@ public class Revision {
     private String comentario;
     private int artID;
 
-    //Metodo static
-    public static void inicializarSistemaRevision(Articulo articulo){
-        //Recibe un articulo que se usara para crar una instacnia de revision y el nombre de la variable sera la id del articulo
-        //Y luego buscara al azar tanto revisores como un editor para inicializar el objeto de revision.
-    }
 
     //Constructor
     public Revision(Editor editor,ArrayList<Revisor> revisores, Articulo articulo, String comentario, int artID){
