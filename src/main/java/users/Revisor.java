@@ -87,6 +87,7 @@ public class Revisor extends Usuario{
     }
 
     public static void estadoReviciones(String usuario){
+        String comentariop= "";
 
         ArrayList<String> opciones = new ArrayList<>() ;
         try {
@@ -160,6 +161,7 @@ public class Revisor extends Usuario{
             System.out.println("Ingrese el comentario: ");
             sc.nextLine();
             String comentario=sc.nextLine();
+            comentariop=comentario;
             for(String linea: lineas){
                 String[] lista= linea.split("_");
                 if(lista[3].equals(codigo)){
@@ -192,6 +194,10 @@ public class Revisor extends Usuario{
                     System.out.println(cambio);
                 }
             }
+            // --------------------- AQUI -------------------------------
+            Revision.enviarCorreo(/* Acceder al objeto de usuario que pertenece el articulo */ , "Un revisor"+ decision +"su articulo",
+            "Su articulo fue rechazado por el revisor "+r.getNombre()+" "+r.getApellido()+" y a emitido el siguiente comentario: "
+                    + '"'+ comentariop +'"');
         }
         lineas.set(posicion, cambio);
         try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\RevicionesP.txt",false))){

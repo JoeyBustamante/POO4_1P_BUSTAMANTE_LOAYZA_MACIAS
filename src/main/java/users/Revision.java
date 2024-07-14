@@ -69,6 +69,7 @@ public class Revision {
         int posicion=random.nextInt(editores.size());
         editorElegido=editores.get(posicion);
         this.editor=editorElegido;
+        notificar(editorElegido);
         return this.editor;
 
     }
@@ -101,6 +102,9 @@ public class Revision {
         Revisor r2 =Listarevisores.get(posicion2);
         rev.add(r1);
         rev.add(r2);
+        notificar(r1);
+        notificar(r2);
+
         try{
             Adicionar1("src\\main\\java\\Archivos\\Revisores.txt", r1);
             Adicionar1("src\\main\\java\\Archivos\\Revisores.txt", r2);
@@ -142,83 +146,9 @@ public class Revision {
         this.comentario=comentario;
     }
 
-    // Metodos para decidir
-    public void decidir(Editor e){
-        System.out.println("Ingrese su decision: (Y/N)");
-        String respuesta = sc.nextLine();
-        respuesta = respuesta.toUpperCase();
-        boolean a=false;
-        while(!a){
-            switch(respuesta){
-                case "Y":
-                    System.out.println("El Articulo fue aceptado");
-                    enviarCorreo(articulo.getAutor() , articulo.getAutor().getCorreo() , "El editor aprobo su articulo", 
-                    "Su articulo fue aprobado por el editor "+e.getNombre()+" "+e.getApellido()+" y su articulo sera publicado.");
-                    a=true;
-                    break;
-                case "N":
-                    System.out.println("Articulo rechazado");
-                    enviarCorreo(articulo.getAutor() , articulo.getAutor().getCorreo() , "El editor rechazo su articulo", 
-                    "Su articulo fue rechazado por el editor "+e.getNombre()+" "+e.getApellido()+" y su articulo no sera publicado.");
-                    a=true;
-                    break;
-                default:
-                    System.out.println("Respuesta invalida ingrese Y para si y N para no");
-                    break;
-
-            }
-        }
-    }
-
-    public void decidir(Revisor r){
-        agregarComentario();
-        System.out.println("Ingrese su decision, aprueba el articulo?: (Y/N)");
-        String respuesta = sc.nextLine();
-        respuesta = respuesta.toUpperCase();
-        boolean a=false;
-        while(!a){
-            switch(respuesta){
-                case "Y":
-                    System.out.println("El Articulo fue aceptado");
-                    enviarCorreo(articulo.getAutor() , articulo.getAutor().getCorreo() , "Un revisor aprobo su articulo", 
-                    "Su articulo fue aprobado por el revisor "+r.getNombre()+" "+r.getApellido()+" y a emitido el siguiente comentario: "
-                    + '"'+comentario+'"');
-                    a=true;
-                    break;
-                case "N":
-                    System.out.println("Articulo rechazado");
-                    enviarCorreo(articulo.getAutor() , articulo.getAutor().getCorreo() , "Un revisor rechazo su articulo", 
-                    "Su articulo fue rechazado por el revisor "+r.getNombre()+" "+r.getApellido()+" y a emitido el siguiente comentario: "
-                    + '"'+comentario+'"');
-                    a=true;
-                    break;
-                default:
-                    System.out.println("Respuesta invalida ingrese Y para si y N para no");
-                    break;
-
-            }
-        }
-    }
 
     //Metodos para notificar
-    public void notificar(Editor editor){
-        Mail.inicializarSistemaCorreo();
-        Mail.sendMail(editor.getCorreo(), "Se le asigno un articulo como editor", "Estimado "+editor.getNombre()+" "
-        + editor.getApellido()+" se le envio este articulo para que de su aprobacion luego de que fue revisado por los revisores "
-        + this.revisores.get(0).getNombre()+" "+this.revisores.get(0).getApellido()+ " y "+this.revisores.get(1).getNombre()
-        + this.revisores.get(1).getApellido()+ "se le solicita que emita su respuesta de si el articulo se publicara o no.");
-    }
-
-    public void notificar(ArrayList<Revisor> revisores){
-        Mail.inicializarSistemaCorreo();
-        for(Revisor r: revisores){
-            Mail.sendMail(r.getCorreo(), "Se le asgino una articulo para revision", "Estimado "+r.getNombre()+" "+r.getApellido()
-            + "se le asigno un articulo adjunto a este correo para su revision y se solicita que lo visualice y emita su juicio y comentarios"
-            +" con respectos al articulo");
-        }
-    }
-
-    public void notificar(Autor autor){
+    public void notificarAutor(){
         Mail.inicializarSistemaCorreo();
         Mail.sendMail(this.articulo.getAutor().getCorreo() , "Su articulo entro a revision", "Se le informa que su articulo"
         +" sera revisado por "+this.revisores.get(0).getNombre()+" "+this.revisores.get(0).getApellido()+" y por "
@@ -226,23 +156,29 @@ public class Revision {
         + this.editor.getNombre()+" "+this.editor.getApellido()+". Se le informara sobre su proceso conforme el mismo avance.");
     }
 
+    public void notificar(Usuario user){
+        Mail.inicializarSistemaCorreo();
+        if(user instanceof Editor){
+            Editor editor=(Editor)user;
+            enviarCorreo(editor, "Se le asigno un articulo como editor", "Estimado "+editor.getNombre()+" "
+        + editor.getApellido()+" se le envio este articulo para que de su aprobacion luego de que fue revisado por los revisores "
+        + this.revisores.get(0).getNombre()+" "+this.revisores.get(0).getApellido()+ " y "+this.revisores.get(1).getNombre()
+        + this.revisores.get(1).getApellido()+ "se le solicita que emita su respuesta de si el articulo se publicara o no.");
+        } else if(user instanceof Revisor){
+            Revisor revisor=(Revisor)user;
+            enviarCorreo(revisor, "Se le asgino una articulo para revision", "Estimado "+revisor.getNombre()+" "+revisor.getApellido()
+            + "se le asigno un articulo adjunto a este correo para su revision y se solicita que lo visualice y emita su juicio y comentarios"
+            +" con respectos al articulo");
+        }
+    }
+
     //Metodos de enviar correo
-    private void enviarCorreo(Autor autor, String correo, String asunto, String cuerpo){
+    private static void enviarCorreo(Usuario user, String asunto, String cuerpo){
         Mail.inicializarSistemaCorreo();
-        Mail.sendMail(correo, asunto, cuerpo);
+        Mail.sendMail(user.correo, asunto, cuerpo);
     }
 
-
-    private void enviarCorreo(Revisor revisor, String correo, String asunto, String cuerpo){
-        Mail.inicializarSistemaCorreo();
-        Mail.sendMail(correo, asunto, cuerpo);
-    }
-
-    private void enviarCorreo(Editor editor, String correo, String asunto, String cuerpo){
-        Mail.inicializarSistemaCorreo();
-        Mail.sendMail(correo, asunto, cuerpo);
-    }
-
+    @Override
     public String toString(){
         return editor.getUserName()+"_["+revisores.get(0).getUserName()+","+revisores.get(1).getUserName()+"]_"+articulo.getDatos()+"_"+comentario+"_"+artID+"_"+"null";
     }

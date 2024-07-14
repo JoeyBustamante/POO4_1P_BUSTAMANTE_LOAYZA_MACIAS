@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -121,6 +122,10 @@ public class Editor extends Usuario {
                     }
                     decision=Decision.valueOf(deci);
                     lin=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+lista[3]+"_"+lista[4]+"_"+decision.toString();
+                    // AQUI VA LA MODIFICACION (ELIMINAR ESTE COMENTARIO LUEGO DE REALIZARLA)
+                    Revision.enviarCorreo(/* Acceder al objeto autor que pertenece el articulo el metodo se encarga de acceder al correo */ , "El editor" + decision+ "su articulo",""+ 
+                    "Su articulo fue" + decision + "por el editor "+ nombre +" "+ apellido +
+                    " y su articulo sera publicado en caso de haber sido aceptado.");
 
                 }
                 
