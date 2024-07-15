@@ -1,0 +1,76 @@
+==== CONFIGS ====		
+{
+    "base_path": "c:\\Users\\Joey Bustamante\\Desktop\\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\\src\\main",
+    "out": "c:\\Users\\Joey Bustamante\\Desktop\\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\\src\\main\\javadoc",
+    "javadoc_executable": "C:\\Program Files\\Java\\jdk-22\\bin\\javadoc.exe",
+    "exclude": [],
+    "raw_params": ""
+}
+
+==== COMMAND ====
+"C:\Program Files\Java\jdk-22\bin\javadoc.exe" 
+	-sourcepath "c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main" 
+	-d "c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\javadoc" 
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\Interfaz.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\Main.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Articulo.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Autor.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Decision.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Editor.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Revision.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Revisor.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Rol.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Sistema.java"
+	"c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Usuario.java"
+
+
+==== JAVADOC OUTPUT ====
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\Interfaz.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\Main.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Articulo.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Autor.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Decision.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Editor.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Revision.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Revisor.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Rol.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Sistema.java...
+Loading source file c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\users\Usuario.java...
+Constructing Javadoc information...
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:5: error: package io.github.cdimascio.dotenv does not exist
+import io.github.cdimascio.dotenv.Dotenv;
+                                 ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:6: error: package jakarta.mail does not exist
+import jakarta.mail.Authenticator;
+                   ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:7: error: package jakarta.mail does not exist
+import jakarta.mail.Message;
+                   ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:8: error: package jakarta.mail does not exist
+import jakarta.mail.MessagingException;
+                   ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:9: error: package jakarta.mail does not exist
+import jakarta.mail.PasswordAuthentication;
+                   ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:10: error: package jakarta.mail does not exist
+import jakarta.mail.Session;
+                   ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:11: error: package jakarta.mail does not exist
+import jakarta.mail.Transport;
+                   ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:12: error: package jakarta.mail.internet does not exist
+import jakarta.mail.internet.InternetAddress;
+                            ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:13: error: package jakarta.mail.internet does not exist
+import jakarta.mail.internet.MimeMessage;
+                            ^
+c:\Users\Joey Bustamante\Desktop\POO4_1P_BUSTAMANTE_LOAYZA_MACIAS\src\main\java\mail\Mail.java:21: error: cannot find symbol
+    private static Session session;
+                   ^
+  symbol:   class Session
+  location: class Mail
+10 errors
+
+
