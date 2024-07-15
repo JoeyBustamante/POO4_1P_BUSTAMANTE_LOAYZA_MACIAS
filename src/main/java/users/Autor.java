@@ -77,7 +77,6 @@ public class Autor extends Usuario {
         revision.asignarRevisor( art);
         revision.notificar();
         revision.guardarRevision();
-        System.out.println(revision.toString());
 
         
     }
