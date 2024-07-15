@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-rey N/A N/A 7897
-rey N/A N/A 5433
-rey N/A N/A 2452
-Patricio N/A N/A 4575
-Valentoina N/A N/A 5778
-papa N/A N/A 3036
-papa N/A N/A 6513
-rey N/A N/A 8746
-Tronco N/A N/A 8711
-rey N/A N/A 1677
-Patricio N/A N/A 2230
-=======
 rey_N/A_N/A_7897
 rey_N/A_N/A_5433
 rey_N/A_N/A_2452
@@ -28,4 +15,5 @@ Patricio_N/A N/A_7972
 Valentoina_N/A N/A_8412
 Patricio_N/A N/A_1700
 Tronco_N/A N/A_7213
->>>>>>> 5f5822e2214a3080096788d886ec053e683acf4b
+
+Valentoina_N/A N/A_4987

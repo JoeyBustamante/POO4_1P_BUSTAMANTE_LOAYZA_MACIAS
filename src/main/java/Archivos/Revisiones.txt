@@ -1,5 +1,2 @@
-<<<<<<< HEAD
-choi [Patricio,Tronco] d null 2230 null
-=======
 choi_[rey,papa]_g_null_1677_null
->>>>>>> 5f5822e2214a3080096788d886ec053e683acf4b
+choi_[Valentoina,papa]_La vida es bella_null_4987_null
