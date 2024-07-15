@@ -13,7 +13,7 @@ public class Revisor extends Usuario{
     protected String userName;
     protected String contrasena;
 
-    public Revisor(String nombre, String apellido, String correo,Rol rol, String especialidad, int ArticuloRevisado, String userName, String contrasena){
+    public Revisor(String nombre, String apellido, String correo,Rol rol, String especialidad, int articuloRevisado, String userName, String contrasena){
         super(nombre,apellido,correo,rol);
         this.especialidad=especialidad;
         this.articuloRevisado=articuloRevisado;
@@ -41,7 +41,7 @@ public class Revisor extends Usuario{
             BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"));
             String linea;
             while ((linea=lector.readLine())!=null) {
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
 
                 if( lista[3].equals("R")){
                     if (usuario.equals(lista[6]) && contrasena.equals(lista[7])){
@@ -71,7 +71,7 @@ public class Revisor extends Usuario{
             // TODO: handle exception
         }
         for(String linea:listaLeida){
-            String[] lista=linea.split(" ");
+            String[] lista=linea.split("_");
             
         }
         System.out.println("Ingerese el comentario: ");
@@ -87,6 +87,7 @@ public class Revisor extends Usuario{
     }
 
     public static void estadoReviciones(String usuario){
+        String comentariop= "";
 
         ArrayList<String> opciones = new ArrayList<>() ;
         try {
@@ -95,7 +96,7 @@ public class Revisor extends Usuario{
             int opcion =0;
             boolean encontrado = false;
             while ((linea=lector.readLine())!=null) {
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 String dato= lista[0];
                 if(dato.equals(usuario)){
                     if(!encontrado){
@@ -134,7 +135,7 @@ public class Revisor extends Usuario{
             BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\RevicionesP.txt"));
             String linea;
             while ((linea=lector.readLine())!=null) {
-                String[] lista=linea.split(" ");   
+                String[] lista=linea.split("_");   
                 lineas.add(linea);
                 if(lista[3].equals(codigo)){
                     System.out.println("Comentarios: "+lista[1]);
@@ -160,12 +161,13 @@ public class Revisor extends Usuario{
             System.out.println("Ingrese el comentario: ");
             sc.nextLine();
             String comentario=sc.nextLine();
+            comentariop=comentario;
             for(String linea: lineas){
-                String[] lista= linea.split(" ");
+                String[] lista= linea.split("_");
                 if(lista[3].equals(codigo)){
                     posicion=lineas.indexOf(linea);
                     lista[1]=comentario;
-                    cambio=lista[0]+" "+lista[1]+" "+lista[2]+" "+lista[3];
+                    cambio=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+lista[3];
                 }
                 
             }
@@ -184,14 +186,65 @@ public class Revisor extends Usuario{
                 incorrecto2=decision.equals(Decision.ACEPTADO.toString());
             }
             for(String linea:lineas){
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 if(lista[3].equals(codigo)){
                     lista[2]=Decision.valueOf(decision).toString();
                     posicion=lineas.indexOf(linea);
-                    cambio=lista[0]+" "+lista[1]+" "+lista[2]+" "+lista[3];
+                    cambio=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+lista[3];
                     System.out.println(cambio);
                 }
             }
+            // --------------------- AQUI -------------------------------//
+            String nombre=null;
+            String apellido=null;
+            try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisores.txt"))){
+                String linea;
+                while ((linea=br1.readLine())!=null) {
+                    String[] lista=linea.split("_");
+                    if(lista[6].equals(usuario)){
+                        nombre=lista[0];
+                        apellido=lista[1];
+                    }
+
+                    
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+            int codAutor=0;
+            try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Articulos.txt"));){
+                String linea;
+                while((linea=br1.readLine())!=null){
+                    String[] lista1=linea.split("-");
+                    if(Integer.parseInt(codigo)==Integer.parseInt(lista1[1])){
+                        codAutor=Integer.parseInt(lista1[0]);
+                    }
+                }
+                
+            } catch (IOException e) {
+                // TODO: handle exception
+            }
+            Autor autor=new Autor(null, null, null, null, codAutor,null, null, null);
+            try (BufferedReader br2=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Investigadores.txt"))){
+                String linea;
+                while ((linea=br2.readLine())!=null) {
+                    String[] lista2=linea.split("_");
+                    if(codAutor==Integer.parseInt(lista2[3])){
+                        autor.setApellido(lista2[1]);
+                        autor.setNombre(lista2[0]);
+                        autor.setCorreo(lista2[2]);
+                        autor.setRol(Rol.valueOf(lista2[3]));
+                        autor.setInstitucion(lista2[5]);
+                        autor.setCampoDeInvestigacion(lista2[6]);
+
+
+                    }
+                }
+            Revision.enviarCorreo(autor , "Un revisor"+ decision +"su articulo",
+            "Su articulo fue"+decision+" por el revisor "+nombre+" "+apellido+" y a emitido el siguiente comentario: "+ '"'+ comentariop +'"');
+        }catch(IOException e){
+
+        }
         }
         lineas.set(posicion, cambio);
         try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\RevicionesP.txt",false))){
@@ -206,4 +259,8 @@ public class Revisor extends Usuario{
         
     }
 
+    @Override
+    public String toString(){
+        return super.toString()+"_"+ especialidad+" "+articuloRevisado+" "+ userName+" "+contrasena;
+    }
 }

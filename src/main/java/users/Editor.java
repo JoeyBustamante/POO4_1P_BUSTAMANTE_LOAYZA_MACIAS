@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,7 +43,7 @@ public class Editor extends Usuario {
             BufferedReader lector=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Usuarios.txt"));
             String linea;
             while ((linea=lector.readLine())!=null) {
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
 
 
                 if( lista[3].equals("E")){
@@ -68,7 +69,7 @@ public class Editor extends Usuario {
             String linea;
             
             while ((linea=br.readLine())!=null) {
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 if(lista[0].equals(usuario)){
                     System.out.println(lista[4]);
                     codigos.add(lista[4]);
@@ -84,7 +85,7 @@ public class Editor extends Usuario {
     }  
 
     //Decision
-    public static void decisionFinal(int codigoArticulo){
+    public static void decisionFinal(int codigoArticulo,String usuario){
         ArrayList<String> lineas=new ArrayList<String>();
         Decision decision;
         int posicion=0;
@@ -94,21 +95,21 @@ public class Editor extends Usuario {
             Scanner sc=new Scanner(System.in);
             while ((linea=br.readLine())!=null) {
                 lineas.add(linea);
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 if(codigoArticulo==Integer.parseInt(lista[4])){
                     posicion=lineas.indexOf(linea);
                     try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\RevicionesP.txt"))){
                         String linea1;
                         while ((linea1=br1.readLine())!=null) {
-                            String[] lista1=linea1.split(" ");
+                            String[] lista1=linea1.split("_");
                             if(Integer.parseInt(lista1[3])==codigoArticulo){
                                 System.out.println(lista1[0]+" "+lista1[1]+" "+ lista1[2]);
                             }
                         }
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         // TODO: handle exception
                     }
-                    System.out.println("Aprueba el articulo APROBADO/RECHAZADO");
+                    System.out.println("Aprueba el articulo ACEPTADO/RECHAZADO");
                     String deci=sc.nextLine().toUpperCase();
                     boolean incorrecto1=deci.equals(Decision.RECHAZADO.toString());
                     boolean incorrecto2=deci.equals(Decision.ACEPTADO.toString());
@@ -120,7 +121,40 @@ public class Editor extends Usuario {
                         incorrecto2=deci.equals(Decision.ACEPTADO.toString());
                     }
                     decision=Decision.valueOf(deci);
-                    lin=lista[0]+" "+lista[1]+" "+lista[2]+" "+lista[3]+" "+lista[4]+" "+decision.toString();
+                    int codAutor=0;
+                    try (BufferedReader br1=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Articulos.txt"));){
+                        while((linea=br1.readLine())!=null){
+                            String[] lista1=linea.split("-");
+                            if(codigoArticulo==Integer.parseInt(lista1[1])){
+                                codAutor=Integer.parseInt(lista1[0]);
+                            }
+                        }
+                        
+                    } catch (IOException e) {
+                        // TODO: handle exception
+                    }
+                    Autor autor=new Autor(null, null, null, null, codAutor,null, null, null);
+                    try (BufferedReader br2=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Investigadores.txt"))){
+                        while ((linea=br2.readLine())!=null) {
+                            String[] lista2=linea.split("_");
+                            if(codAutor==Integer.parseInt(lista2[3])){
+                                autor.setApellido(lista2[1]);
+                                autor.setNombre(lista2[0]);
+                                autor.setCorreo(lista2[2]);
+                                autor.setRol(Rol.valueOf(lista2[3]));
+                                autor.setInstitucion(lista2[5]);
+                                autor.setCampoDeInvestigacion(lista2[6]);
+
+
+                            }
+                        }
+                        
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    lin=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+lista[3]+"_"+lista[4]+"_"+decision.toString();
+                    // AQUI VA LA MODIFICACION (ELIMINAR ESTE COMENTARIO LUEGO DE REALIZARLA)
+                    Revision.enviarCorreo(autor , "El editor" + decision+ "su articulo",""+ "Su articulo fue" + decision + "por el editor "+ usuario +" y su articulo sera publicado en caso de haber sido aceptado.");
 
                 }
                 
@@ -150,12 +184,12 @@ public class Editor extends Usuario {
             Scanner sc=new Scanner(System.in);
             while ((linea=br.readLine())!=null) {
                 lineas.add(linea);
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 if(codigoArticulo==Integer.parseInt(lista[4])){
                     posicion=lineas.indexOf(linea);
                     System.out.println("Ingrese su comentario:");
                     comentario=sc.nextLine();
-                    lin=lista[0]+" "+lista[1]+" "+lista[2]+" "+comentario+" "+lista[4]+" "+lista[5];
+                    lin=lista[0]+"_"+lista[1]+"_"+lista[2]+"_"+comentario+"_"+lista[4]+"_"+lista[5];
 
                 }
                 
@@ -180,7 +214,7 @@ public class Editor extends Usuario {
         try(BufferedReader br=new BufferedReader(new FileReader("src\\main\\java\\Archivos\\Revisiones.txt"))) {
             String linea;
             while((linea=br.readLine())!=null){
-                String[] lista=linea.split(" ");
+                String[] lista=linea.split("_");
                 if (lista[0].equals(userName)){
                     System.out.println(contador+lista[4]);
                     contador+=1;

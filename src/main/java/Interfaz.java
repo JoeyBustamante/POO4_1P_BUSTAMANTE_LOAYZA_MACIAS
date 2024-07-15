@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.io.FileReader;
 
 
-public class Interfaz {
+public interface Interfaz {
     
-    public void inicio(){
+    static void inicio(){
         Scanner sc = new Scanner(System.in);
         System.out.println(" 1: Someter Articulo \n "+"2: Iniciar Secion");
         String tipo = sc.nextLine().toUpperCase();
@@ -23,9 +23,6 @@ public class Interfaz {
             case "1":
                 System.out.println("--------------------------");
                 Autor.someterArticulo();
-
-
-                
 
                 break;
             case "2":
@@ -62,7 +59,7 @@ public class Interfaz {
                                     }
                                 }
                             } while (incorrecto);
-                            Editor.decisionFinal(codi);
+                            Editor.decisionFinal(codi,usuario);
                             Editor.agregarComentario(codi);
                         }else{
                             Revisor.estadoReviciones(usuario);

@@ -75,6 +75,7 @@ public class Autor extends Usuario {
         aut.EncontrarAutor();
         revision.asignarEditor();
         revision.asignarRevisor( art);
+        revision.notificar();
         revision.guardarRevision();
         System.out.println(revision.toString());
 
@@ -103,7 +104,7 @@ public class Autor extends Usuario {
         boolean noEncuentra=true;
         for (int i=0; i<listaLeida.size();i++) {
             String l1=listaLeida.get(i);
-            String lista[]=l1.split(" ");
+            String lista[]=l1.split("_");
             Usuario user=new Usuario(lista[0], lista[1], lista[2],Rol.valueOf(lista[3]));
             if(equals(user)){
                 noEncuentra=false;
@@ -128,6 +129,8 @@ public class Autor extends Usuario {
         }
         else{
             listaLeida.add(toString());
+            Sistema.listaUsuario.add(this);
+            Sistema.registrarDatoUsuario();
         }
 
         try (BufferedWriter bw=new BufferedWriter(new FileWriter("src\\main\\java\\Archivos\\Investigadores.txt",false))){
@@ -147,7 +150,7 @@ public class Autor extends Usuario {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return super.toString()+" "+this.id+" "+this.institucion+" "+this.campoDeInvestgacion+" "+this.articulo.toString();
+        return super.toString()+"_"+this.id+"_"+this.institucion+"_"+this.campoDeInvestgacion+"_"+this.articulo.toString();
     }
 
 

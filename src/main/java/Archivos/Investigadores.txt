@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Joey Bustamante' awijdwahdwa A 192 wdahdiuawh pene [users.Articulo@b4c966a]
 Francis Loayza loayzafrancis@gmail.com A 2166 Espol Matematicas [2166-2479-irewoirwqiro]
 Joey Bustamante jpbb2004@outlook.com A 1874 Espol A [1874-8461-Hola soy joey proyecto ]
@@ -16,3 +17,10 @@ g  g A 4567 g g [4567-5776-g]
 j jj j A 2991 j j [2991-4575-j]
 g g g A 4645 g g [4645-8711-g, 4645-3036-g]
  f fg A 2729 g g [2729-1677-g]
+dd d d A 6468 d d [6468-2230-d]
+=======
+Joey_Bustamante'_awijdwahdwa_A_192_wdahdiuawh_pene_[users.Articulo@b4c966a]
+Francis_Loayza_loayzafrancis@gmail.com_A_2166_Espol_Matematicas_[2166-2479-irewoirwqiro]
+Joey_Bustamante_jb@outlook.com_A_1874_Espol_Matematicas_[1874-8461-Hola soy joey proyecto]
+
+>>>>>>> 5f5822e2214a3080096788d886ec053e683acf4b
