@@ -1,7 +1,6 @@
 rey_N/A_N/A_7897
 rey_N/A_N/A_5433
 rey_N/A_N/A_2452
-rey_N/A_N/A_4597
 Patricio_N/A_N/A_4575
 Valentoina_N/A_N/A_5778
 papa_N/A_N/A_3036
@@ -9,9 +8,6 @@ papa_N/A_N/A_6513
 rey_N/A_N/A_8746
 Tronco_N/A_N/A_8711
 rey_N/A_N/A_1677
-rey_N/A N/A_8785
-rey_N/A N/A_5546
-Patricio_N/A N/A_7972
-Valentoina_N/A N/A_8412
-Patricio_N/A N/A_1700
-Tronco_N/A N/A_7213
+Patricio_Hola Soy Jooey_N/A_2230
+
+Patricio_N/A N/A_696
